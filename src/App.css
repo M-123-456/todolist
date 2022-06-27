@@ -1,38 +1,204 @@
 .App {
+  min-height: 100vh;
+  margin-top: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+}
+
+.close:hover {
+  opacity: 0.8;
+}
+
+nav {
+  margin-block: 1rem;
+}
+
+nav h1 {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.todolists {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.todolists .plusIcon {
+  font-size: 2rem;
+  text-align: right;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin-bottom: 1rem;
+}
+
+.todolists .plusIcon:hover {
+  opacity: 0.8;
+}
+
+.todolists ul {
+  list-style: none;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-size: 1.6rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  min-width: 12rem;
+  -webkit-box-shadow: 6px 5px 8px 2px rgba(74, 71, 55, 0.47);
+          box-shadow: 6px 5px 8px 2px rgba(74, 71, 55, 0.47);
+}
+
+.todolists ul a {
+  text-decoration: none;
+}
+
+.todolists ul a:link, .todolists ul a:hover, .todolists ul a:active {
+  color: #282940;
+}
+
+.todolists ul li {
+  border-bottom: solid 1px #c2c2b6;
+  padding: .5rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.modal {
+  position: relative;
+  padding: 3rem 4rem;
+  background-color: #ebe536;
+  border-radius: .5rem;
+  -webkit-box-shadow: 6px 5px 8px 1000px rgba(74, 71, 55, 0.47);
+          box-shadow: 6px 5px 8px 1000px rgba(74, 71, 55, 0.47);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.modal input {
+  border: none;
+  border-radius: .5rem;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  font-family: 'Poppins', sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.modal input:focus {
+  outline: none;
+  background-color: #EAE1DA;
+}
+
+.todolist {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.todolist h2 {
+  padding-left: 1rem;
+}
+
+.todolist-setting {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.todolist-setting .button {
+  font-size: 2rem;
+}
+
+.todolist-setting .button:hover {
+  opacity: 0.8;
+}
+
+.todolist-setting .menubox {
+  position: relative;
+}
+
+.todolist-setting .menubox ul {
+  text-align: left;
+}
+
+li:hover {
+  background-color: rgba(166, 211, 52, 0.3);
+}
+
+.hide {
+  display: none;
+}
+
+.todo-input {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: .5rem;
+  width: 100%;
+}
+
+.todo-input:focus {
+  outline: none;
+}
+
+.todo-card {
+  margin-bottom: .8rem;
+  background-color: white;
+  border-radius: .5rem;
+  -webkit-box-shadow: 6px 5px 8px 2px rgba(74, 71, 55, 0.47);
+          box-shadow: 6px 5px 8px 2px rgba(74, 71, 55, 0.47);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  word-wrap: break-word;
+  font-size: 1.4rem;
+  padding: .5rem 1rem;
+  min-width: 18rem;
+  min-height: 3rem;
 }
 
-.App-link {
-  color: #61dafb;
+.todo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.edit {
+  background-color: #EAE1DA;
 }
+
+.todo-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.complete {
+  text-decoration: line-through;
+}
+/*# sourceMappingURL=App.css.map */
