@@ -1,15 +1,14 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { AiFillPlusCircle } from 'react-icons/ai';
 import ListModal from '../modal/ListModal';
+import SideBar from '../SideBar';
 import TodoList from './TodoList';
 
 
 
-const TodoListOverview = () => {
+const TodoLists = () => {
     const [todoLists, setTodoLists] = useState([]);
     const [listName, setListName] = useState('');
+    const [chosenEmoji, setChosenEmoji] = useState(null);
     const [isModal, setIsModal] = useState(false);
 
     console.log('todoLists', todoLists)
@@ -50,6 +49,7 @@ const TodoListOverview = () => {
         const newTodoList = {
             id: idGenerator(),
             name: listName,
+            icon: chosenEmoji || '',
         }
 
         setTodoLists((prevTodoLists) => ([
@@ -63,9 +63,9 @@ const TodoListOverview = () => {
 
     return (
         <div className="todolists">
-            <AiFillPlusCircle 
-                onClick={() => setIsModal(true)}
-                className={isModal ? 'hide' : 'icon plusIcon'}
+            <SideBar
+                setIsModal={setIsModal}
+                todoLists={todoLists}
             />
             {
                 isModal && 
@@ -74,36 +74,20 @@ const TodoListOverview = () => {
                 handleChangeName={handleChangeName}
                 listName={listName}
                 setIsModal={setIsModal}
+                chosenEmoji={chosenEmoji}
+                setChosenEmoji={setChosenEmoji}
             />
 
-            }
+            }         
             
-            <ul 
-                className={isModal ? 'hide' : ''}
-            >
-                {todoLists.map((todoList) => (
-                <li key={todoList.id}>
-                    <Link to={todoList.id}>
-                        {todoList.name}
-                    </Link>
-                </li>
-                ))}
-            </ul>
-
             <div>
                 {todoLists.map((todoList) => (
-                    <Route 
-                        path={`/${todoList.id}`}
+                    <TodoList
                         key={todoList.id}
-                        element={
-                            <TodoList
-                                key={todoList.id}
-                                todoLists={todoLists}  
-                                setTodoLists={setTodoLists}
-                                listId={todoList.id}
-                                listName={todoList.name}                        
-                            />
-                        }
+                        todoLists={todoLists}  
+                        setTodoLists={setTodoLists}
+                        listId={todoList.id}
+                        listName={todoList.name}                        
                     />
                 ))}
             </div>
@@ -112,4 +96,4 @@ const TodoListOverview = () => {
     );
 }
  
-export default TodoListOverview;
+export default TodoLists;

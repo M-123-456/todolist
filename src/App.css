@@ -31,6 +31,12 @@
   display: none;
 }
 
+.button {
+  background-color: #282940;
+  border: none;
+  border-radius: .5rem;
+}
+
 ul {
   list-style: none;
   background-color: white;

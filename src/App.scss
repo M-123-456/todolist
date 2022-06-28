@@ -26,6 +26,16 @@
   display: none;
 }
 
+.button {
+  background-color: #282940;
+  border: none;
+  border-radius: .5rem;
+  color: white;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 ul {
     list-style: none;
     background-color: white;
@@ -93,6 +103,10 @@ nav {
   border-radius: .5rem;
   box-shadow: 6px 5px 8px 1000px rgba(74,71,55,0.47);
 
+  .modal-emoji {
+    display: flex;
+  }
+
   input{
     border: none;
     border-radius: .5rem;
@@ -105,6 +119,8 @@ nav {
     }
   }
 }
+
+
 
 // TodoList
 
