@@ -18,8 +18,12 @@ const TodoList = ( { setTodoLists, listId, listName } ) => {
         handleFilter();
     },[todos]);
 
+    useEffect(() => {
+        updateTodoList(listId);
+    }, [todos])
 
-    const addTodo = (e) => {
+
+    const addTodo = (e, listId) => {
         e.preventDefault();
 
         const newTodos = [
@@ -31,8 +35,19 @@ const TodoList = ( { setTodoLists, listId, listName } ) => {
         }
         ];
 
-        setTodos(newTodos);
+        setTodos(newTodos);     
         setInput('');
+    }
+
+    const updateTodoList = (listId) => {
+        setTodoLists((prevTodoLists => prevTodoLists.map(todoList => (
+            todoList.id === listId ?
+            {
+                ...todoList,
+                todos: todos 
+            }
+            : todoList
+        ))));
     }
 
     const completeTodo = (id) => {
@@ -67,12 +82,14 @@ const TodoList = ( { setTodoLists, listId, listName } ) => {
                 removeTodo={removeTodo}
                 todos={todos}
                 setTodos={setTodos}
+                listId={listId}
             />
             <TodoForm
                 input={input}
                 setInput={setInput}
                 setTodos={setTodos}
                 addTodo={addTodo}
+                listId={listId}
             />
         </div>
     );

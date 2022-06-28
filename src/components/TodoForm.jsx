@@ -1,5 +1,7 @@
+import { useState } from 'react';
+const TodoForm = ( { input, setInput, addTodo, setIsEdit, editInput, setEditInput, updateTodo, id  } ) => {
+    const [isInputMode, setIsInputMode] = useState(false);
 
-const TodoForm = ( { input, setInput, setTodos, addTodo, setIsEdit, editInput, setEditInput, updateTodo, id  } ) => {
     // const inputRef = useRef(null);
 
     // useEffect(() => {

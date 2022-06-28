@@ -3,7 +3,7 @@ import Home from '../components/Home';
 import TodoList from '../components/TodoList';
 
 
-const Router = ( ) => {
+const Router = ( { todoLists, setTodoLists } ) => {
     return (
         <Routes>
             <Route 
@@ -12,17 +12,17 @@ const Router = ( ) => {
             />
             {/* {todoLists.map((todoList) => (
                 <Route 
-                    path={todoList.id}
+                    path={`/${todoList.id}`}
                     element={
-                        <TodoList 
+                        <TodoList
+                            key={todoList.id}      
+                            setTodoLists={setTodoLists}
                             listId={todoList.id}
-                            listName={todoList.name}
+                            listName={todoList.name}                        
                         />
-                    } 
+                    }
                 />
-            ))} */}
-
-            
+            ))}             */}
         </Routes>
     );
 }

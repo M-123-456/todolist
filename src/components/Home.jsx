@@ -1,11 +1,11 @@
 import Nav from "./Nav";
-import TodoLists from "./TodoLists";
+import TodoListOverview from "./TodoListOverview";
 
 const Home = () => {
     return ( 
         <div>
             <Nav />
-            <TodoLists />
+            <TodoListOverview />
         </div>
     );
 }

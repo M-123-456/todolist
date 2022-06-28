@@ -27,7 +27,7 @@ const TodoListSetting = ( { removeTodoList } ) => {
                         Change List Name
                     </li>
                     <li>
-                        something other
+                        Show completed tasks
                     </li>
                 </ul>
             </div>

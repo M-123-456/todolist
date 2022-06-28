@@ -5,17 +5,16 @@ import { AiFillPlusCircle } from 'react-icons/ai';
 import { nanoid } from 'nanoid';
 import ListInfoModal from './ListInfoModal';
 import TodoList from './TodoList';
-import { TodoListContext } from '../provider/TodoListProvider';
 
 
 
-const TodoLists = () => {
+const TodoListOverview = () => {
     const [todoLists, setTodoLists] = useState([]);
     const [listName, setListName] = useState('');
     const [isModal, setIsModal] = useState(false);
 
+    console.log('todoLists', todoLists)
 
-    console.log('todolist', todoLists)
 
 
     const handleChangeName = (e) => {
@@ -34,13 +33,13 @@ const TodoLists = () => {
             ...prevTodoLists,
             newTodoList
         ]));
-        
-        setListName('');
+
         setIsModal(false);
+        setListName('');
     }
 
     return (
-        <div className="todolists">
+        <div className="todolist">
             <AiFillPlusCircle 
                 onClick={() => setIsModal(true)}
                 className={isModal ? 'hide' : 'plusIcon'}
@@ -59,10 +58,17 @@ const TodoLists = () => {
             <ul>
                 {todoLists.map((todoList) => (
                 <li>
-                    <Link to={todoList.id}>{todoList.name}</Link>
+                    <Link to={todoList.id}>
+                        {todoList.name}
+                    </Link>
                 </li>
                 ))}
             </ul>
+                
+            {/* <Router
+                todoLists={todoLists}
+                setTodoLists={setTodoLists}
+            /> */}
 
             <Routes>
                 {todoLists.map((todoList) => (
@@ -84,4 +90,4 @@ const TodoLists = () => {
     );
 }
  
-export default TodoLists;
+export default TodoListOverview;
