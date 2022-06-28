@@ -13,15 +13,18 @@
           align-items: center;
 }
 
+.icon {
+  font-size: 2rem;
+}
+
+.icon:hover {
+  opacity: 0.8;
+}
+
 .close {
   position: absolute;
   top: -10px;
   right: -10px;
-  font-size: 2rem;
-}
-
-.close:hover {
-  opacity: 0.8;
 }
 
 .hide {
@@ -63,30 +66,33 @@ nav h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .todolists .plusIcon {
-  font-size: 2rem;
   text-align: right;
   -ms-flex-item-align: end;
       align-self: flex-end;
   margin-bottom: 1rem;
 }
 
-.todolists .plusIcon:hover {
-  opacity: 0.8;
-}
-
 .todolists ul {
   font-size: 1.6rem;
-  text-align: center;
+  min-width: 15rem;
+  max-width: 20rem;
 }
 
-.todolists a {
+.todolists ul li {
+  padding-left: 2rem;
+}
+
+.todolists ul a {
   text-decoration: none;
 }
 
-.todolists a:link, .todolists a:hover, .todolists a:active {
+.todolists ul a:link, .todolists ul a:hover, .todolists ul a:active {
   color: #282940;
 }
 
@@ -118,7 +124,8 @@ nav h1 {
 }
 
 .todolist h2 {
-  padding-left: 1rem;
+  padding-left: .5rem;
+  margin-top: 2rem;
 }
 
 .todolist-setting {
@@ -127,19 +134,11 @@ nav h1 {
   right: 0;
 }
 
-.todolist-setting .button {
-  font-size: 2rem;
-}
-
-.todolist-setting .button:hover {
-  opacity: 0.8;
-}
-
-.todolist-setting .menubox {
+.menubox {
   position: relative;
 }
 
-.todolist-setting .menubox ul {
+.menubox ul {
   text-align: left;
   font-size: 1rem;
 }
@@ -157,6 +156,7 @@ nav h1 {
 }
 
 .todo-card {
+  margin-top: 1rem;
   margin-bottom: .8rem;
   background-color: white;
   border-radius: .5rem;

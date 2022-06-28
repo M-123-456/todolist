@@ -9,14 +9,17 @@
 }
 
 // components
-.close {
-  position: absolute;
-  top: -10px;
-  right: -10px;
+.icon {
   font-size: 2rem;
   &:hover {
     opacity: 0.8;
   }
+}
+
+.close {
+  position: absolute;
+  top: -10px;
+  right: -10px;  
 }
 
 .hide {
@@ -25,7 +28,6 @@
 
 ul {
     list-style: none;
-    // font-size: 1.6rem;
     background-color: white;
     border-radius: 0.5rem;
     min-width: 12rem;
@@ -51,32 +53,38 @@ nav {
   }
 }
 
+// TodoList Overview
 .todolists {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   .plusIcon {
-    font-size: 2rem;
     text-align: right;
     align-self: flex-end;
     margin-bottom: 1rem;
-    &:hover {
-      opacity: 0.8;
-    }
   }
 
   ul {
     font-size: 1.6rem;
-    text-align: center;
-  }
+    // text-align: center;
+    min-width: 15rem;
+    max-width: 20rem;
 
-  a {
+    li {
+      padding-left: 2rem;
+    }
+
+    a {
       text-decoration: none;
       &:link, &:hover, &:active {
         color: #282940;
-    }   
-  }
+      }   
+    }
+  }  
 }
+
+// ListInfoModal
 
 .modal {
   position: relative;
@@ -98,26 +106,24 @@ nav {
   }
 }
 
+// TodoList
+
 .todolist {
   position: relative;
   margin-top: 2rem;
 
   h2 {
-    padding-left: 1rem;
+    padding-left: .5rem;
+    margin-top: 2rem;
   }
 }
 
+// TodoListSetting
 .todolist-setting {
   position: absolute;
   top: 0;
-  right: 0;
-
-  .button {
-    font-size: 2rem;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
+  right: 0; 
+}
 
   .menubox {
     position: relative;
@@ -125,13 +131,11 @@ nav {
     ul {
       text-align: left;
       font-size: 1rem;
-    }
-
-    
+    }    
   }
-}
-  
 
+
+// TodoForm  
 .todo-input {
   font-family: 'Poppins', sans-serif;
   font-size: 1.4rem;
@@ -143,7 +147,11 @@ nav {
   width: 100%;
 }
 
+
+// TodoForm & Todo
+
 .todo-card {
+  margin-top: 1rem;
   margin-bottom: .8rem;
   background-color: white;
   border-radius: .5rem;
@@ -163,6 +171,7 @@ nav {
   gap: 1rem;
 }
 
+// ! Doesn't work when the position is changed
 .edit {
   background-color: #EAE1DA;
 }

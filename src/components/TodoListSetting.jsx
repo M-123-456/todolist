@@ -10,12 +10,12 @@ const TodoListSetting = ( { removeTodoList } ) => {
         <div className="todolist-setting">
             <AiFillSetting 
                 onClick={() => setShowSetting(true)}
-                className={showSetting ? "hide" : "button"}
+                className={showSetting ? "hide" : "icon"}
             />
             <div className={showSetting ? "menubox" : "hide"}>
                 <IoIosCloseCircle 
                     onClick={() => setShowSetting(false)}
-                    className="close"
+                    className="icon close"
                 />
                 <ul className="todolist-setting-menu">
                     <li

@@ -1,6 +1,6 @@
 import { IoIosCloseCircle } from 'react-icons/io';
 
-const ListInfoModal = ( { addTodoList, handleChangeName, listName, setIsModal } ) => {
+const ListModal = ( { addTodoList, handleChangeName, listName, setIsModal } ) => {
     return (
         <form 
             onSubmit={addTodoList} 
@@ -8,7 +8,7 @@ const ListInfoModal = ( { addTodoList, handleChangeName, listName, setIsModal } 
         >
             <IoIosCloseCircle 
                 onClick={() => setIsModal(false)}
-                className="close"
+                className="icon close"
             />
             <input 
                 type="text" 
@@ -21,4 +21,4 @@ const ListInfoModal = ( { addTodoList, handleChangeName, listName, setIsModal } 
     );
 }
  
-export default ListInfoModal;
+export default ListModal;

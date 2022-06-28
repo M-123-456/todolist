@@ -17,11 +17,11 @@ const TodoForm = ( { input, setInput, addTodo, setIsEdit, editInput, setEditInpu
     return (
         <div>
             <form 
-                className="todo-card edit" 
+                className="edit todo-card" 
                 onSubmit={editInput ? (e) => updateTodo(e, id) : addTodo}>
                 <div className="todo">
                     <input
-                    className="todo-input edit"
+                    className="edit todo-input"
                     type="text" 
                     name="todo" 
                     // ref={inputRef}

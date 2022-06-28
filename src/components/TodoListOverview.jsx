@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { nanoid } from 'nanoid';
-import ListInfoModal from './ListInfoModal';
+import ListModal from './ListModal';
 import TodoList from './TodoList';
 
 
@@ -39,14 +39,14 @@ const TodoListOverview = () => {
     }
 
     return (
-        <div className="todolist">
+        <div className="todolists">
             <AiFillPlusCircle 
                 onClick={() => setIsModal(true)}
-                className={isModal ? 'hide' : 'plusIcon'}
+                className={isModal ? 'hide' : 'icon plusIcon'}
             />
             {
                 isModal && 
-                <ListInfoModal 
+                <ListModal 
                 addTodoList={addTodoList}
                 handleChangeName={handleChangeName}
                 listName={listName}
@@ -55,7 +55,9 @@ const TodoListOverview = () => {
 
             }
             
-            <ul>
+            <ul 
+                className={isModal ? 'hide' : ''}
+            >
                 {todoLists.map((todoList) => (
                 <li>
                     <Link to={todoList.id}>
