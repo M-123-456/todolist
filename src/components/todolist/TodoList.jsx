@@ -9,19 +9,6 @@ import TodoListSetting from './TodoListSetting';
 const TodoList = ( { todoLists, setTodoLists, listId, listName } ) => {
    
     const [todos, setTodos] = useState([]);
-    // const [todos, setTodos] = useState(() => {
-    //     if(!todoLists){
-    //         return [];
-    //     } else {
-    //         const found = todoLists.find(todoList => todoList.id === listId);
-
-    //         if(found){
-    //             return found.todos;
-    //         } else {
-    //             return [];
-    //         }
-    //     }
-    // });
     const [input, setInput] = useState('');
     const [filteredTodos, setFilteredTodos] = useState([]);
 
@@ -30,7 +17,7 @@ const TodoList = ( { todoLists, setTodoLists, listId, listName } ) => {
     },[todos]);
 
     useEffect(() => {
-        getLocalTodos();
+        getTodos();
     }, [])
 
     useEffect(() => {
@@ -38,7 +25,7 @@ const TodoList = ( { todoLists, setTodoLists, listId, listName } ) => {
     }, [todos])
 
     // !
-    const getLocalTodos = () => {
+    const getTodos = () => {
         if(todoLists){
             const found = todoLists.find(todoList => todoList.id === listId);
             if(found){
@@ -65,16 +52,24 @@ const TodoList = ( { todoLists, setTodoLists, listId, listName } ) => {
 
     const addTodo = (e) => {
         e.preventDefault();
-
-        setTodos((todos) => ([
-            ...todos, 
-            {
-                id: nanoid(),
-                todo: input,
-                isDone: false
-            }
-        ]))
-
+        if(todos){
+            setTodos((todos) => ([
+                ...todos, 
+                {
+                    id: nanoid(),
+                    todo: input,
+                    isDone: false
+                }
+            ]))
+        } else {
+            setTodos([
+                {
+                    id: nanoid(),
+                    todo: input,
+                    isDone: false
+                }
+            ])
+        }
         setInput('');
     }
 
@@ -114,7 +109,6 @@ const TodoList = ( { todoLists, setTodoLists, listId, listName } ) => {
             <TodoForm
                 input={input}
                 setInput={setInput}
-                setTodos={setTodos}
                 addTodo={addTodo}
                 listId={listId}
             />

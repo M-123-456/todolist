@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { AiFillSetting } from 'react-icons/ai';
 import { IoIosCloseCircle } from 'react-icons/io';
-import ListModal from './ListModal';
 
 
 const TodoListSetting = ( { listId, setTodoLists } ) => {
@@ -28,9 +27,7 @@ const TodoListSetting = ( { listId, setTodoLists } ) => {
                     className="icon close"
                 />
                 <ul className="todolist-setting-menu">
-                    <li
-                        onClick={() => removeTodoList(listId)}
-                    >
+                    <li onClick={() => removeTodoList(listId)}>
                         Delete list
                     </li>
                     <li onClick={() => setIsEditList(true)}>

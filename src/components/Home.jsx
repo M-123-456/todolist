@@ -1,5 +1,5 @@
-import Nav from "./Nav";
-import TodoListOverview from "./TodoListOverview";
+import Nav from "./navigation/Nav";
+import TodoListOverview from "./todolist/TodoListOverview";
 
 const Home = () => {
     return ( 
