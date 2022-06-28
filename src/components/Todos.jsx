@@ -3,7 +3,7 @@ import Todo from './Todo';
 const Todos = ( { completeTodo, removeTodo, todos, setTodos } ) => {
     return (
         <div>
-            {todos.map((todo) => (
+            {todos?.map((todo) => (
                 <Todo
                 key={todo.id}
                 id={todo.id}

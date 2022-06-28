@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { AiFillPlusCircle } from 'react-icons/ai';
@@ -15,7 +15,26 @@ const TodoListOverview = () => {
 
     console.log('todoLists', todoLists)
 
+    useEffect(() => {
+        getLocalTodoLists();
+    }, []);
 
+    useEffect(() => {
+        saveLocalTodoLists();
+    },[todoLists])
+
+    const saveLocalTodoLists = () => {
+       localStorage.setItem('todoLists', JSON.stringify(todoLists));
+    };
+
+    const getLocalTodoLists = () => {
+        if(localStorage.getItem('todoLists') === null){
+            localStorage.setItem('todoLists', JSON.stringify([]));
+        } else {
+            const todoListLocal = JSON.parse(localStorage.getItem('todoLists'));
+            setTodoLists(todoListLocal);
+        }
+    };
 
     const handleChangeName = (e) => {
         setListName(e.target.value);
@@ -59,7 +78,9 @@ const TodoListOverview = () => {
                 className={isModal ? 'hide' : ''}
             >
                 {todoLists.map((todoList) => (
-                <li>
+                <li
+                    key={todoList.id}    
+                >
                     <Link to={todoList.id}>
                         {todoList.name}
                     </Link>
@@ -78,7 +99,8 @@ const TodoListOverview = () => {
                         path={`/${todoList.id}`}
                         element={
                             <TodoList
-                                key={todoList.id}      
+                                key={todoList.id}
+                                todoLists={todoLists}  
                                 setTodoLists={setTodoLists}
                                 listId={todoList.id}
                                 listName={todoList.name}                        

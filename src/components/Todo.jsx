@@ -22,9 +22,6 @@ const Todo = ( {id, todo, isDone, completeTodo, removeTodo, todos, setTodos } ) 
         setEditInput(matched.todo);
     }
 
-    
-
-
     const updateTodo = (e, id) => {
         e.preventDefault();
 
@@ -68,7 +65,7 @@ const Todo = ( {id, todo, isDone, completeTodo, removeTodo, todos, setTodos } ) 
                             </div>
                             <div className="todo-icons">
                                 <MdDone 
-                                    onClick={() => completeTodo(id)}
+                                    onClick={(e) => completeTodo(e, id)}
                                     />
                                 <MdDeleteForever
                                     onClick={() => removeTodo(id)}
