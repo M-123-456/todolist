@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { IoIosCloseCircle } from 'react-icons/io';
-import { VscSmiley } from 'react-icons/vsc'
 import Picker from 'emoji-picker-react';
 
 const ListModal = ( { addTodoList, handleChangeName, listName, setIsModal, chosenEmoji, setChosenEmoji } ) => {
@@ -18,33 +17,51 @@ const ListModal = ( { addTodoList, handleChangeName, listName, setIsModal, chose
             onSubmit={(e) => addTodoList(e, chosenEmoji)} 
             className="modal"
         >
+            {/* close button */}
             <IoIosCloseCircle 
                 onClick={() => setIsModal(false)}
                 className="icon close"
             />
-            <div className="modal-emoji">
+
+            {/* field to choose and show chosen emoji */}
+            <div className="modal-emoji-picker">                
                 <div
-                className="button" 
-                onClick={() => setShowEmoji(true)}
+                className="button"
+                onClick={() => setShowEmoji(prev => !prev)}
                 >
-                    Choose icon <VscSmiley />
+                    <span>
+                        {showEmoji ? 'Hide emojis' : 'Choose icon'}
+                    </span> 
                 </div>                
-                <div>
-                    {chosenEmoji ? chosenEmoji.emoji : 'No icon'}
-                </div>
-                {
-                    showEmoji &&
-                    <Picker onEmojiClick={onEmojiClick} />
-                }
+                <div className="emoji">
+                    <span>
+                        {chosenEmoji ? chosenEmoji.emoji : 'No icon'}
+                    </span>
+                </div>                
             </div>
+
+            {/* show emoji-picker when showEmoji is true */}
+            {
+                showEmoji &&
+                <Picker 
+                    onEmojiClick={onEmojiClick}
+                    className="emoji-window" 
+                />
+            }
+
+            {/* field to input list name */}
             <input 
-                type="text" 
+                type="text"
+                className={showEmoji ? "hide" : ""} 
                 value={listName} 
                 placeholder="Name of your new todo list"
                 onChange={handleChangeName}
                 autoFocus
             />
             
+            <button className="button">
+                Create!
+            </button>
 
             
         </form>

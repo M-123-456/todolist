@@ -3,10 +3,15 @@ import { nanoid } from 'nanoid';
 
 
 import TodoForm from "./TodoForm";
-import Todos from "./Todos";
+import Todos from "./NotNeededTodos";
 import TodoListSetting from './TodoListSetting';
+import Todo from './Todo';
 
-const TodoList = ( { todoLists, setTodoLists, listId, listName } ) => {
+const TodoList = ( { displayedTodoList, todoLists, setTodoLists } ) => {
+
+    const { id: listId, name: listName, icon } = displayedTodoList;
+
+    console.log(displayedTodoList.id)
    
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState('');
@@ -94,18 +99,33 @@ const TodoList = ( { todoLists, setTodoLists, listId, listName } ) => {
 
     return (
         <div className="todolist">
+
+            {/* setting icon */}
             <TodoListSetting 
                 listId={listId}
                 setTodoLists={setTodoLists}
             />
-            <h2>{listName}</h2>
-            <Todos
-                completeTodo={completeTodo}
-                removeTodo={removeTodo}
-                todos={todos}
-                setTodos={setTodos}
-                listId={listId}
-            />
+
+            <h2><span>{icon.emoji}</span>{listName}</h2>
+
+            {/* if there are todos, show todos */}
+            {
+                todos ? todos.map((todo) => (
+                    <Todo
+                        key={todo.id}
+                        id={todo.id}
+                        todo={todo.todo}
+                        isDone={todo.isDone}
+                        completeTodo={completeTodo}
+                        removeTodo={removeTodo}
+                        todos={todos}
+                        setTodos={setTodos}
+                    />
+                )) : null
+
+            }
+            
+            {/* input form of new todo */}
             <TodoForm
                 input={input}
                 setInput={setInput}

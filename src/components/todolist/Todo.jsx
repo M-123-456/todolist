@@ -5,7 +5,7 @@ import { MdDeleteForever } from 'react-icons/md';
 
 const Todo = ( {id, todo, isDone, completeTodo, removeTodo, todos, setTodos } ) => {
 
-    // state isEdit is triggered by clicking on the todo div to show edit form 
+    // state isEdit is triggered by clicking on the todo div to show edit form. To be set to false onBlur. 
     const [isEdit, setIsEdit] = useState(false);
     // the input todo is stored on editInput temporary till it is added to state todos
     const [editInput, setEditInput] = useState('');

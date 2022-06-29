@@ -1,12 +1,12 @@
-const Nav = () => {
+const Header = () => {
     return (
-        <nav>
+        <header>
             <h1>
                 My Todo Lists
             </h1>
-        </nav> 
+        </header> 
        
      );
 }
  
-export default Nav;
+export default Header;
