@@ -7,7 +7,8 @@
 }
 
 body {
-  background-color: #ebe536;
+  min-height: 100vh;
+  background: linear-gradient(90deg, rgba(255,248,238,1) 29%, rgba(223,224,223,1) 100%);
   font-family: 'Poppins', sans-serif;
   color: #282940;
 }
