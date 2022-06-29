@@ -41,7 +41,7 @@ $box-shadow-modal: 6px 5px 8px 1000px rgba(74,71,55,0.47);
 
 .button {
   padding: .2rem .8rem;
-  border-radius: 8rem;
+  border-radius: 999px;
   background-color: $accent-color;
   color: white;
   &:hover {
@@ -74,6 +74,8 @@ nav {
   position: fixed;
   top: 0;
   right: 0;
+  z-index: 1;
+  transition: transform 250ms ease-in-out;
   
 
   .hamburger {
@@ -196,7 +198,7 @@ nav {
 .todolist-setting {
   position: absolute;
   top: 0;
-  right: 0; 
+  right: .3rem; 
 }
 
   .menubox {

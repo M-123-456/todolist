@@ -1,18 +1,16 @@
 import { useState } from 'react';
 import { AiFillSetting } from 'react-icons/ai';
 import { IoIosCloseCircle } from 'react-icons/io';
-import ListModal from '../modal/ListModal';
 
 
-const TodoListSetting = ( { listId, setTodoLists, showCompletedTodos, setShowCompletedTodos } ) => {
+const TodoListSetting = ( { listId, setTodoLists, showCompletedTodos, setShowCompletedTodos, setDisplayedTodoList } ) => {
     const [showSetting, setShowSetting] = useState(false);
-    const [isEditList, setIsEditList] = useState(false);
     
 
     const removeTodoList = (listId) => {
         setTodoLists(prevTodoLists => prevTodoLists.filter((todoList) => todoList.id !== listId));
         setShowSetting(false);
-        //! re-rendering needed
+        setDisplayedTodoList({});
     }
 
     const handleShowCompletedTodos = () => {

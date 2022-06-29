@@ -6,18 +6,22 @@ import TodoListSetting from './TodoListSetting';
 import Todo from './Todo';
 import TodoListName from './TodoListName';
 
-const TodoList = ( { displayedTodoList, todoLists, setTodoLists, idGenerator } ) => {
+const TodoList = ( { displayedTodoList, setDisplayedTodoList, todoLists, setTodoLists, idGenerator } ) => {
 
     const { id: listId, name: listName, icon } = displayedTodoList;
 
-    console.log(displayedTodoList.id)
-   
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState('');
+    const [filteredTodos, setFilteredTodos] = useState([]);
+
+
+    // state used in TodoListName when changing list name or icon
     const [isEditName, setIsEditName] = useState(false);
 
     const [showCompletedTodos, setShowCompletedTodos] = useState(true);
-    const [filteredTodos, setFilteredTodos] = useState([]);
+
+    console.log('filteredTodos', filteredTodos);
+    console.log('todos', todos);
 
     useEffect(() => {
         getTodos();
@@ -98,7 +102,8 @@ const TodoList = ( { displayedTodoList, todoLists, setTodoLists, idGenerator } )
         if(showCompletedTodos){
             setFilteredTodos(todos);
         } else {
-            setFilteredTodos((prevTodos => prevTodos.filter(todo => todo.isDone === false)));
+            const filtered = todos.filter((todo => todo.isDone === false));
+            setFilteredTodos(filtered);
         }
     };
 
@@ -120,6 +125,7 @@ const TodoList = ( { displayedTodoList, todoLists, setTodoLists, idGenerator } )
                             !isEditName &&
                             <TodoListSetting 
                                 listId={listId}
+                                setDisplayedTodoList={setDisplayedTodoList}
                                 setTodoLists={setTodoLists}
                                 showCompletedTodos={showCompletedTodos}
                                 setShowCompletedTodos={setShowCompletedTodos}

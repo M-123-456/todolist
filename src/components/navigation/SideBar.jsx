@@ -3,6 +3,7 @@ import { FcMenu } from 'react-icons/fc'
 
 const SideBar = ( { setIsModal, todoLists, setShowNav, showNav, setDisplayedTodoList } ) => {
 
+
     const handleSelectedTodoList = (e) => {
         const found = todoLists.find((todoList => (todoList.id === e.target.id)));
         setDisplayedTodoList(found);
@@ -44,7 +45,7 @@ const SideBar = ( { setIsModal, todoLists, setShowNav, showNav, setDisplayedTodo
                                                 id={todoList.id}
                                                 onClick={(e) => handleSelectedTodoList(e)}
                                             >
-                                                <span className="list-emoji">
+                                                <span>
                                                     {todoList.icon.emoji}
                                                 </span>
                                                 {todoList.name}

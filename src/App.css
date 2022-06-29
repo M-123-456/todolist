@@ -43,7 +43,7 @@
 
 .button {
   padding: .2rem .8rem;
-  border-radius: 8rem;
+  border-radius: 999px;
   background-color: #282940;
   color: white;
 }
@@ -76,6 +76,11 @@ nav {
   position: fixed;
   top: 0;
   right: 0;
+  z-index: 1;
+  -webkit-transition: -webkit-transform 250ms ease-in-out;
+  transition: -webkit-transform 250ms ease-in-out;
+  transition: transform 250ms ease-in-out;
+  transition: transform 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
 }
 
 nav .hamburger {
@@ -221,7 +226,7 @@ nav .nav-open .nav-list li:hover {
 .todolist-setting {
   position: absolute;
   top: 0;
-  right: 0;
+  right: .3rem;
 }
 
 .menubox {

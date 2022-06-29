@@ -89,6 +89,7 @@ const Home = () => {
                 !isModal && 
                 <TodoList 
                 displayedTodoList={displayedTodoList}
+                setDisplayedTodoList={setDisplayedTodoList}
                 todoLists={todoLists}
                 setTodoLists={setTodoLists}
                 idGenerator={idGenerator}
