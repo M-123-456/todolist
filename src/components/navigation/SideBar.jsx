@@ -5,8 +5,12 @@ const SideBar = ( { setIsModal, todoLists, setShowNav, showNav, setDisplayedTodo
 
     const handleSelectedTodoList = (e) => {
         const found = todoLists.find((todoList => (todoList.id === e.target.id)));
-        console.log(found);
         setDisplayedTodoList(found);
+    }
+
+    const handleClick = () => {
+        setIsModal(true);
+        setShowNav(false);
     }
 
     return (
@@ -21,11 +25,11 @@ const SideBar = ( { setIsModal, todoLists, setShowNav, showNav, setDisplayedTodo
                         className="icon nav-close"
                         onClick={() => setShowNav(false)} 
                         />
-                        <ul>
+                        <ul className="nav-list">
 
-                            {/* trigger ListModal when clicked */}
+                            {/* Create new Todo List. Trigger ListModal when clicked */}
                             <li
-                                onClick={() => setIsModal(true)}
+                                onClick={handleClick}
                                 >
                                 Create New Todo List
                             </li>
@@ -40,7 +44,7 @@ const SideBar = ( { setIsModal, todoLists, setShowNav, showNav, setDisplayedTodo
                                                 id={todoList.id}
                                                 onClick={(e) => handleSelectedTodoList(e)}
                                             >
-                                                <span>
+                                                <span className="list-emoji">
                                                     {todoList.icon.emoji}
                                                 </span>
                                                 {todoList.name}

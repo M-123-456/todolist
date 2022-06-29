@@ -1,3 +1,10 @@
+// variables
+$base-color: #ebe536;
+$font-color: #282940;
+$accent-color: #282940;
+$hover-color: rgba(166, 211, 52, 0.3);
+$box-shadow: 6px 5px 8px 5px rgba(74,71,55,0.27);
+$box-shadow-modal: 6px 5px 8px 1000px rgba(74,71,55,0.47);
 
 
 .App {
@@ -26,22 +33,18 @@
   display: none;
 }
 
+.list-emoji {
+  margin-right: 1rem;
+}
 
 
 ul {
     list-style: none;
     background-color: white;
-    border-radius: 0.5rem;
-    min-width: 12rem;
-    box-shadow: 6px 5px 8px 2px rgba(74,71,55,0.47);
+    padding: .5rem;
 
     li {
-      border-bottom: solid 1px #c2c2b6;
       padding: .5rem;
-      &:hover {
-      background-color: rgba(166, 211, 52, 0.3);
-    
-    }
   }
 }
 
@@ -68,48 +71,26 @@ nav {
       margin: .5rem;
     }
 
-    ul {
+    .nav-list {
       box-shadow: none;
       border-radius: 0;
-      
+
       li {
         font-size: 1.6rem;
+        &:hover {
+        background-color: $hover-color;
+        }
       }
-
+           
     }
   }
 }
 
-// TodoLists
-.todolists {
+// Home
+.home {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-
-  .plusIcon {
-    text-align: right;
-    align-self: flex-end;
-    margin-bottom: 1rem;
-  }
-
-  ul {
-    font-size: 1.6rem;
-    // text-align: center;
-    min-width: 15rem;
-    max-width: 20rem;
-
-    li {
-      padding-left: 2rem;
-    }
-
-    a {
-      text-decoration: none;
-      &:link, &:hover, &:active {
-        color: #282940;
-      }   
-    }
-  }  
 }
 
 // ListModal
@@ -119,9 +100,9 @@ nav {
   flex-direction: column;
   width: 40rem;
   padding: 3rem 4rem;
-  background-color: #ebe536;
+  background-color: $base-color;
   border-radius: .5rem;
-  box-shadow: 6px 5px 8px 1000px rgba(74,71,55,0.47);
+  box-shadow: $box-shadow-modal;
   position: relative;
 
   .modal-emoji-picker {
@@ -142,7 +123,7 @@ nav {
   }
 
     .button {
-      background-color: #282940;
+      background-color: $accent-color;
       color: white;
       &:hover {
         opacity: 0.8;
@@ -162,7 +143,6 @@ nav {
     font-family: 'Poppins', sans-serif;
     &:focus {
       outline: none;
-      background-color: #EAE1DA;
     }
   }
 
@@ -185,6 +165,16 @@ nav {
     padding-left: .5rem;
     margin-top: 2rem;
   }
+
+  .todolist-list {
+    padding: .5rem 1rem 1.5rem .5rem;
+    border-radius: .2rem;
+    box-shadow: $box-shadow;
+    
+    li {
+        border-bottom: solid 1px #c2c2b6;
+    }
+  } 
 }
 
 // TodoListSetting
@@ -200,7 +190,14 @@ nav {
     ul {
       text-align: left;
       font-size: 1rem;
-    }    
+      box-shadow: $box-shadow;
+
+    li {
+      &:hover {
+        background-color: $hover-color;
+        }        
+      }
+    }
   }
 
 
@@ -219,31 +216,19 @@ nav {
 
 // TodoForm & Todo
 
-.todo-card {
-  margin-top: 1rem;
-  margin-bottom: .8rem;
-  background-color: white;
-  border-radius: .5rem;
-  box-shadow: 6px 5px 8px 2px rgba(74,71,55,0.47);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  word-wrap: break-word;
-  font-size: 1.4rem;
-  padding: .5rem 1rem;
-  min-width: 18rem;
-  min-height: 3rem;  
-}
-
 .todo {
   display: flex;
   gap: 1rem;
 }
 
-// ! Doesn't work when the position is changed
-.edit {
-  background-color: #EAE1DA;
+// Todo
+
+.todo-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
 }
+
 
 .todo-icons {
   display: flex;
@@ -252,4 +237,19 @@ nav {
 
 .complete {
   text-decoration: line-through;
+}
+
+
+//! format
+// TodoListName
+
+.form-list-name {
+  display: flex;
+  input {
+    background-color: $base-color;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
 }

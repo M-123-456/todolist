@@ -8,7 +8,6 @@ const ListModal = ( { addTodoList, handleChangeName, listName, setIsModal, chose
 
     const onEmojiClick = (e, emojiObject) => {
         setChosenEmoji(emojiObject);
-        console.log(chosenEmoji);
         setShowEmoji(false);
     }
 

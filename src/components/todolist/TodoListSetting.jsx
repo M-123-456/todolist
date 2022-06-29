@@ -1,18 +1,24 @@
 import { useState } from 'react';
 import { AiFillSetting } from 'react-icons/ai';
 import { IoIosCloseCircle } from 'react-icons/io';
+import ListModal from '../modal/ListModal';
 
 
-const TodoListSetting = ( { listId, setTodoLists } ) => {
+const TodoListSetting = ( { listId, setTodoLists, showCompletedTodos, setShowCompletedTodos } ) => {
     const [showSetting, setShowSetting] = useState(false);
-    const [showCompletedTodos, setShowCompletedTodos] = useState(false);
     const [isEditList, setIsEditList] = useState(false);
     
 
     const removeTodoList = (listId) => {
         setTodoLists(prevTodoLists => prevTodoLists.filter((todoList) => todoList.id !== listId));
+        setShowSetting(false);
+        //! re-rendering needed
     }
 
+    const handleShowCompletedTodos = () => {
+        setShowCompletedTodos(prev => !prev);
+        setShowSetting(false);
+    }
 
 
     return (
@@ -21,6 +27,7 @@ const TodoListSetting = ( { listId, setTodoLists } ) => {
                 onClick={() => setShowSetting(true)}
                 className={showSetting ? "hide" : "icon"}
             />
+            
             <div className={showSetting ? "menubox" : "hide"}>
                 <IoIosCloseCircle 
                     onClick={() => setShowSetting(false)}
@@ -30,11 +37,14 @@ const TodoListSetting = ( { listId, setTodoLists } ) => {
                     <li onClick={() => removeTodoList(listId)}>
                         Delete list
                     </li>
-                    <li onClick={() => setIsEditList(true)}>
-                        Change List Name
-                    </li>
-                    <li>
-                        Show completed tasks
+                    <li onClick={handleShowCompletedTodos}>
+                        <span>
+                            {
+                                showCompletedTodos ?
+                                "Hide " : "Show "
+                            }
+                        </span>
+                        completed tasks
                     </li>
                 </ul>
             </div>

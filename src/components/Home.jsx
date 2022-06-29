@@ -43,9 +43,6 @@ const Home = () => {
     //     }
     // };
 
-    const isEmpty = (obj) => {
-        return JSON.stringify(obj) === JSON.stringify({});
-    }
     
     const idGenerator = () => {
         return (performance.now().toString(36) + Math.random().toString(36)).replace(/\./g, '');
@@ -70,14 +67,14 @@ const Home = () => {
         ]));
 
         setIsModal(false);
+        setDisplayedTodoList(newTodoList);
         setListName('');
+        setChosenEmoji(null);
     }
 
     return (
-        <div className="todolists">
-            <Header 
-                displayedTodoList={displayedTodoList}
-            />
+        <div className="home">          
+            <Header displayedTodoList={displayedTodoList}/>
 
             {/* side bar navigation to show chosen todo list in TodoList */}
             <SideBar
@@ -86,7 +83,17 @@ const Home = () => {
                 setShowNav={setShowNav}
                 showNav={showNav}
                 setDisplayedTodoList={setDisplayedTodoList}
-            />
+            /> 
+
+            {
+                !isModal && 
+                <TodoList 
+                displayedTodoList={displayedTodoList}
+                todoLists={todoLists}
+                setTodoLists={setTodoLists}
+                idGenerator={idGenerator}
+                />
+            }            
 
             {/* show Modal to input list name and icon when is Modal is on */}
             {
@@ -99,34 +106,8 @@ const Home = () => {
                 chosenEmoji={chosenEmoji}
                 setChosenEmoji={setChosenEmoji}
             />
-            }
-
-            {
-                isEmpty(displayedTodoList) ?
-                (<div>Hi there 👋,<br /> choose your List to show!</div>)
-                :
-                <TodoList 
-                displayedTodoList={displayedTodoList}
-                todoLists={todoLists}
-                setTodoLists={setTodoLists}
-                />              
-
-            }
-             
-
-            {/* <div>
-                {todoLists.map((todoList) => (
-                    <TodoList
-                        key={todoList.id}
-                        todoLists={todoLists}  
-                        setTodoLists={setTodoLists}
-                        listId={todoList.id}
-                        listName={todoList.name}                        
-                    />
-                ))}
-            </div> */}
+            }             
         </div>
-        
     );
 }
  

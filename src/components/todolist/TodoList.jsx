@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import { nanoid } from 'nanoid';
 
 
 import TodoForm from "./TodoForm";
-import Todos from "./NotNeededTodos";
 import TodoListSetting from './TodoListSetting';
 import Todo from './Todo';
+import TodoListName from './TodoListName';
 
-const TodoList = ( { displayedTodoList, todoLists, setTodoLists } ) => {
+const TodoList = ( { displayedTodoList, todoLists, setTodoLists, idGenerator } ) => {
 
     const { id: listId, name: listName, icon } = displayedTodoList;
 
@@ -15,19 +14,25 @@ const TodoList = ( { displayedTodoList, todoLists, setTodoLists } ) => {
    
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState('');
-    const [filteredTodos, setFilteredTodos] = useState([]);
 
-    useEffect(() => {
-        handleFilter();
-    },[todos]);
+    const [showCompletedTodos, setShowCompletedTodos] = useState(true);
+    const [filteredTodos, setFilteredTodos] = useState([]);
 
     useEffect(() => {
         getTodos();
     }, [])
 
     useEffect(() => {
+        handleFilter();
+    }, [todos, showCompletedTodos, todoLists])
+
+    useEffect(() => {
         updateTodoList(listId);
-    }, [todos])
+    },[todos])
+
+    const isEmpty = (obj) => {
+        return JSON.stringify(obj) === JSON.stringify({});
+    }
 
     // !
     const getTodos = () => {
@@ -57,28 +62,23 @@ const TodoList = ( { displayedTodoList, todoLists, setTodoLists } ) => {
 
     const addTodo = (e) => {
         e.preventDefault();
+
+        const newTodo = {
+            id: idGenerator(),
+            todo: input,
+            isDone: false
+        }
+
         if(todos){
             setTodos((todos) => ([
                 ...todos, 
-                {
-                    id: nanoid(),
-                    todo: input,
-                    isDone: false
-                }
+                newTodo
             ]))
         } else {
-            setTodos([
-                {
-                    id: nanoid(),
-                    todo: input,
-                    isDone: false
-                }
-            ])
+            setTodos([newTodo])
         }
         setInput('');
-    }
-
-    
+    }    
 
     const completeTodo = (e, id) => {
         e.stopPropagation();
@@ -94,45 +94,75 @@ const TodoList = ( { displayedTodoList, todoLists, setTodoLists } ) => {
     }
 
     const handleFilter = () => {
-        setFilteredTodos((prevTodos => prevTodos.filter(todo => todo.isDone === false)));
-    }
+        if(showCompletedTodos){
+            setFilteredTodos(todos);
+        } else {
+            setFilteredTodos((prevTodos => prevTodos.filter(todo => todo.isDone === false)));
+        }
+    };
 
     return (
-        <div className="todolist">
+        <>
+            { 
+                isEmpty(displayedTodoList) ? 
+                (
+                    <h3 className="todolist">
+                        Hi there 👋,<br /> choose your List to show!
+                    </h3>
+                )
+                : 
+                (
+                    <div className="todolist">
 
-            {/* setting icon */}
-            <TodoListSetting 
-                listId={listId}
-                setTodoLists={setTodoLists}
-            />
+                        {/* setting icon */}
+                        <TodoListSetting 
+                            listId={listId}
+                            setTodoLists={setTodoLists}
+                            showCompletedTodos={showCompletedTodos}
+                            setShowCompletedTodos={setShowCompletedTodos}
+                        />
 
-            <h2><span>{icon.emoji}</span>{listName}</h2>
+                        <TodoListName 
+                            listId={listId}
+                            icon={icon}
+                            listName={listName}
+                            setTodoLists={setTodoLists}
+                        />
 
-            {/* if there are todos, show todos */}
-            {
-                todos ? todos.map((todo) => (
-                    <Todo
-                        key={todo.id}
-                        id={todo.id}
-                        todo={todo.todo}
-                        isDone={todo.isDone}
-                        completeTodo={completeTodo}
-                        removeTodo={removeTodo}
-                        todos={todos}
-                        setTodos={setTodos}
-                    />
-                )) : null
+                        <ul className="todolist-list">
+                            {/* if there are todos, show todos */}
+                            {
+                                filteredTodos ? filteredTodos.map((todo) => (
+                                    <Todo
+                                        key={todo.id}
+                                        id={todo.id}
+                                        todo={todo.todo}
+                                        isDone={todo.isDone}
+                                        completeTodo={completeTodo}
+                                        removeTodo={removeTodo}
+                                        todos={todos}
+                                        setTodos={setTodos}
+                                    />
+                                )) : null
+                            }
 
+
+                            {/* input form of new todo */}
+                            <li>
+                                <TodoForm
+                                    input={input}
+                                    setInput={setInput}
+                                    addTodo={addTodo}
+                                    listId={listId}
+                                />
+                            </li>
+                        </ul>                 
+                    </div>
+                )
             }
             
-            {/* input form of new todo */}
-            <TodoForm
-                input={input}
-                setInput={setInput}
-                addTodo={addTodo}
-                listId={listId}
-            />
-        </div>
+        
+        </>
     );
 }
  

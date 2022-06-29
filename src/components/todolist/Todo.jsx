@@ -40,41 +40,44 @@ const Todo = ( {id, todo, isDone, completeTodo, removeTodo, todos, setTodos } ) 
             {
                 isEdit ?
                 (
-                    <form 
-                        className="edit todo-card" 
-                        onSubmit={(e) => updateTodo(e, id)}>
-                        <div className="todo">
-                            <input
-                            className="edit todo-input"
-                            type="text" 
-                            name="todo" 
-                            value={editInput}
-                            onChange={handleChange}
-                            onBlur={() => setIsEdit(false)}     
-                            autoFocus
-                            />
-                        </div>
-                    </form>
+                    <li>
+                        <form 
+                            onSubmit={(e) => updateTodo(e, id)}>
+                            <div className="todo">
+                                <input
+                                className="todo-input"
+                                type="text" 
+                                name="todo" 
+                                value={editInput}
+                                onChange={handleChange}
+                                onBlur={() => setIsEdit(false)}     
+                                autoFocus
+                                />
+                            </div>
+                        </form>
+                    </li>
                 ):
                 (
-                    <div 
-                        className="todo-card"
+                    <li 
+                        className="todo-line"
                         onClick={() => handleEdit(id)}
                     >
-                        <div
-                            className={isDone ? "todo complete" : "todo"}
+                        <p
+                            className={isDone ? "complete" : ""}
                         >
-                            <div>{todo}</div>
-                        </div>
+                            {todo}
+                        </p>
                         <div className="todo-icons">
-                            <MdDone 
-                                onClick={(e) => completeTodo(e, id)}
-                                />
-                            <MdDeleteForever
-                                onClick={() => removeTodo(id)}
-                                />
+                            <div className="todo-icons">
+                                <MdDone 
+                                    onClick={(e) => completeTodo(e, id)}
+                                    />
+                                <MdDeleteForever
+                                    onClick={() => removeTodo(id)}
+                                    />
+                            </div>
                         </div>
-                    </div>
+                    </li>
                 )
             }
         </div>

@@ -31,22 +31,18 @@
   display: none;
 }
 
+.list-emoji {
+  margin-right: 1rem;
+}
+
 ul {
   list-style: none;
   background-color: white;
-  border-radius: 0.5rem;
-  min-width: 12rem;
-  -webkit-box-shadow: 6px 5px 8px 2px rgba(74, 71, 55, 0.47);
-          box-shadow: 6px 5px 8px 2px rgba(74, 71, 55, 0.47);
-}
-
-ul li {
-  border-bottom: solid 1px #c2c2b6;
   padding: .5rem;
 }
 
-ul li:hover {
-  background-color: rgba(166, 211, 52, 0.3);
+ul li {
+  padding: .5rem;
 }
 
 nav {
@@ -79,17 +75,21 @@ nav .nav-open .nav-close {
   margin: .5rem;
 }
 
-nav .nav-open ul {
+nav .nav-open .nav-list {
   -webkit-box-shadow: none;
           box-shadow: none;
   border-radius: 0;
 }
 
-nav .nav-open ul li {
+nav .nav-open .nav-list li {
   font-size: 1.6rem;
 }
 
-.todolists {
+nav .nav-open .nav-list li:hover {
+  background-color: rgba(166, 211, 52, 0.3);
+}
+
+.home {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -100,31 +100,6 @@ nav .nav-open ul li {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.todolists .plusIcon {
-  text-align: right;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  margin-bottom: 1rem;
-}
-
-.todolists ul {
-  font-size: 1.6rem;
-  min-width: 15rem;
-  max-width: 20rem;
-}
-
-.todolists ul li {
-  padding-left: 2rem;
-}
-
-.todolists ul a {
-  text-decoration: none;
-}
-
-.todolists ul a:link, .todolists ul a:hover, .todolists ul a:active {
-  color: #282940;
 }
 
 .modal {
@@ -195,7 +170,6 @@ nav .nav-open ul li {
 
 .modal input:focus {
   outline: none;
-  background-color: #EAE1DA;
 }
 
 .modal button {
@@ -215,6 +189,17 @@ nav .nav-open ul li {
   margin-top: 2rem;
 }
 
+.todolist .todolist-list {
+  padding: .5rem 1rem 1.5rem .5rem;
+  border-radius: .2rem;
+  -webkit-box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
+          box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
+}
+
+.todolist .todolist-list li {
+  border-bottom: solid 1px #c2c2b6;
+}
+
 .todolist-setting {
   position: absolute;
   top: 0;
@@ -228,6 +213,12 @@ nav .nav-open ul li {
 .menubox ul {
   text-align: left;
   font-size: 1rem;
+  -webkit-box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
+          box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
+}
+
+.menubox ul li:hover {
+  background-color: rgba(166, 211, 52, 0.3);
 }
 
 .todo-input {
@@ -242,29 +233,6 @@ nav .nav-open ul li {
   outline: none;
 }
 
-.todo-card {
-  margin-top: 1rem;
-  margin-bottom: .8rem;
-  background-color: white;
-  border-radius: .5rem;
-  -webkit-box-shadow: 6px 5px 8px 2px rgba(74, 71, 55, 0.47);
-          box-shadow: 6px 5px 8px 2px rgba(74, 71, 55, 0.47);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  word-wrap: break-word;
-  font-size: 1.4rem;
-  padding: .5rem 1rem;
-  min-width: 18rem;
-  min-height: 3rem;
-}
-
 .todo {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -272,8 +240,14 @@ nav .nav-open ul li {
   gap: 1rem;
 }
 
-.edit {
-  background-color: #EAE1DA;
+.todo-line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 1.4rem;
 }
 
 .todo-icons {
@@ -288,5 +262,20 @@ nav .nav-open ul li {
 
 .complete {
   text-decoration: line-through;
+}
+
+.form-list-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.form-list-name input {
+  background-color: #ebe536;
+  border: none;
+}
+
+.form-list-name input:focus {
+  outline: none;
 }
 /*# sourceMappingURL=App.css.map */

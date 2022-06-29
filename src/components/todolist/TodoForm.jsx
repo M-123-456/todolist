@@ -5,12 +5,11 @@ const TodoForm = ( { input, setInput, addTodo } ) => {
     }
 
     return (
-        <form 
-            className="edit todo-card" 
+        <form  
             onSubmit={addTodo}>
             <div className="todo">
                 <input
-                className="edit todo-input"
+                className="todo-input"
                 type="text" 
                 name="todo" 
                 // ref={inputRef}
