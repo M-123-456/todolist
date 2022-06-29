@@ -67,16 +67,16 @@ const Todo = ( {id, todo, isDone, completeTodo, removeTodo, todos, setTodos } ) 
                         >
                             {todo}
                         </p>
-                        <div className="todo-icons">
                             <div className="todo-icons">
-                                <MdDone 
+                                <MdDone
+                                    className="icon"
                                     onClick={(e) => completeTodo(e, id)}
-                                    />
+                                />
                                 <MdDeleteForever
+                                    className="icon"
                                     onClick={() => removeTodo(id)}
-                                    />
+                                />                         
                             </div>
-                        </div>
                     </li>
                 )
             }

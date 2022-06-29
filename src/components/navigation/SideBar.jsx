@@ -56,7 +56,7 @@ const SideBar = ( { setIsModal, todoLists, setShowNav, showNav, setDisplayedTodo
                     </div>
                 ):
                 <FcMenu 
-                className="icon button hamburger"
+                className="icon hamburger"
                 onClick={() => setShowNav(true)}
                 />
             }            

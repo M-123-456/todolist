@@ -14,6 +14,7 @@ const TodoList = ( { displayedTodoList, todoLists, setTodoLists, idGenerator } )
    
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState('');
+    const [isEditName, setIsEditName] = useState(false);
 
     const [showCompletedTodos, setShowCompletedTodos] = useState(true);
     const [filteredTodos, setFilteredTodos] = useState([]);
@@ -115,20 +116,25 @@ const TodoList = ( { displayedTodoList, todoLists, setTodoLists, idGenerator } )
                     <div className="todolist">
 
                         {/* setting icon */}
-                        <TodoListSetting 
-                            listId={listId}
-                            setTodoLists={setTodoLists}
-                            showCompletedTodos={showCompletedTodos}
-                            setShowCompletedTodos={setShowCompletedTodos}
-                        />
-
+                        {
+                            !isEditName &&
+                            <TodoListSetting 
+                                listId={listId}
+                                setTodoLists={setTodoLists}
+                                showCompletedTodos={showCompletedTodos}
+                                setShowCompletedTodos={setShowCompletedTodos}
+                            />
+                        }
+                        
                         <TodoListName 
                             listId={listId}
                             icon={icon}
                             listName={listName}
                             setTodoLists={setTodoLists}
+                            isEditName={isEditName}
+                            setIsEditName={setIsEditName}
                         />
-
+                        
                         <ul className="todolist-list">
                             {/* if there are todos, show todos */}
                             {

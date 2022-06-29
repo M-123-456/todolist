@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import Picker from 'emoji-picker-react';
+import { MdSystemUpdateAlt } from 'react-icons/md';
 
 
-const TodoListName = ( {listId, icon, listName, setTodoLists }) => {
-    const [isEdit, setIsEdit] = useState(false);
+const TodoListName = ( {listId, icon, listName, setTodoLists, isEditName, setIsEditName}) => {
     const [editName, setEditName] = useState(listName)
     const [chosenEmoji, setChosenEmoji] = useState(icon);
     const [showEmoji, setShowEmoji] = useState(false);
@@ -29,59 +29,66 @@ const TodoListName = ( {listId, icon, listName, setTodoLists }) => {
                 icon: chosenEmoji
             }: todoList
         )));
-        setIsEdit(false);
+        setIsEditName(false);
     }
 
 
     return (
         <>
             {
-                isEdit ?
+                isEditName ?
                 (
                     <form 
                         className="form-list-name"
                         onSubmit={(e) => handleSubmit(e, listId)}
                     >
-                        <div className="emoji">
-                            {chosenEmoji ? chosenEmoji.emoji : 'No icon'}
-                        </div>  
+                        <div 
+                            className="list-title"
+                        >
+                            {chosenEmoji ? chosenEmoji.emoji : ''}
+                        </div>
                         <input 
-                            class="todo-input"
+                            className="list-title"
                             value={editName}
                             onChange={handleChange}
                             autoFocus 
-                        />
-                        <div className="modal-emoji-picker">                
-                            <div
+                            />   
+                        <div
                             className="button"
-                            onClick={() => setShowEmoji(prev => !prev)}
+                            onClick={() => setShowEmoji(prev => !prev)}                            
                             >
                                 <span>
                                     {showEmoji ? 'Hide emojis' : 'Choose icon'}
                                 </span> 
-                            </div>  
                         </div>
+
+                        <button className="update-button">
+                            <MdSystemUpdateAlt 
+                            className="icon"
+                            />
+                        </button>
+                        
+
                         {
                             showEmoji &&
                             <Picker 
                                 onEmojiClick={onEmojiClick}
-                                className="emoji-window" 
+                                className="form-list-emoji" 
                             />
                         }
-                        <button>
-                            Change
-                        </button>
                     </form>
 
                 ):
                 (
-                    <div onClick={() => setIsEdit(prev => !prev)}>
-                        <h2>
+                    <div 
+                    onClick={() => setIsEditName(prev => !prev)}
+                    >
+                        <div className="list-title">
                             <span className="list-emoji">
                                 {icon.emoji}
                             </span>
                             {listName}
-                        </h2>            
+                        </div>            
                     </div>
                 )
             }
