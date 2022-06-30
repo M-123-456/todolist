@@ -1,9 +1,8 @@
 // variables
 // emoji color #FDBB33;
-$base-color: #FDBB33;
-$font-color: #A78D65;
-$accent-color: #A36953;
-$hover-color: rgba(166, 211, 52, 0.3);
+$font-color: #3F3932;
+$gradient-background: linear-gradient(90deg, rgba(255,248,238,1) 29%, rgba(223,224,223,1) 100%);
+$button-gradient-background: linear-gradient(90deg, rgba(75,103,110,1) 29%, rgba(47,72,88,0.8894421421201889) 100%);
 $box-shadow: 6px 5px 8px 5px rgba(74,71,55,0.27);
 $box-shadow-modal: 6px 5px 8px 1000px rgba(74,71,55,0.47);
 
@@ -42,8 +41,11 @@ $box-shadow-modal: 6px 5px 8px 1000px rgba(74,71,55,0.47);
 
 .button {
   padding: .2rem .8rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  border: none;
   border-radius: 999px;
-  background-color: $accent-color;
+  background: $button-gradient-background;
   color: white;
   &:hover {
     opacity: 0.8;
@@ -102,7 +104,7 @@ nav {
       li {
         font-size: 1.6rem;
         &:hover {
-        background-color: $hover-color;
+        background: $gradient-background;
         }
       }
            
@@ -124,7 +126,7 @@ nav {
   flex-direction: column;
   width: 40rem;
   padding: 3rem 4rem;
-  background-color: $base-color;
+  background: $gradient-background;
   border-radius: .5rem;
   box-shadow: $box-shadow-modal;
   position: relative;
@@ -146,10 +148,10 @@ nav {
     justify-content: center;
   }
 
-    
-
   .emoji {
     background-color: white;
+    font-size: 1.2rem;
+    box-shadow: $box-shadow;
   }
 
   input{
@@ -159,15 +161,19 @@ nav {
     padding: 1rem 2rem;
     font-size: 1.4rem;
     font-family: 'Poppins', sans-serif;
+    box-shadow: $box-shadow;
     &:focus {
       outline: none;
     }
   }
 
-  button {
-    padding: .5rem 1rem;
+  .modal-button {
+    border-radius: 50rem;
+  }
+
+  .modal-submit-button {
+    border-radius: 50rem;
     align-self: flex-end;
-    border-radius: .5rem;
   }
 }
 
@@ -213,6 +219,7 @@ nav {
     li {
       &:hover {
         background-color: $hover-color;
+        border-radius: .3rem;
         }        
       }
     }
@@ -270,7 +277,7 @@ nav {
   input {
     min-width: 5rem;
     max-width: 15rem;
-    background-color: $base-color;
+    background: white;
     border: none;
     &:focus {
       outline: none;
@@ -291,4 +298,5 @@ nav {
 
 .list-title {
   font-size: 1.6rem;
+  font-weight: 600;
 }

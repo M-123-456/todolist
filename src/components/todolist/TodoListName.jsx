@@ -4,13 +4,14 @@ import { MdSystemUpdateAlt } from 'react-icons/md';
 
 
 const TodoListName = ( {listId, icon, listName, setTodoLists, isEditName, setIsEditName}) => {
-    const [editName, setEditName] = useState(listName)
-    const [chosenEmoji, setChosenEmoji] = useState(icon);
+    const [editName, setEditName] = useState(listName || "");
+    const [chosenEmoji, setChosenEmoji] = useState(icon || "");
     const [showEmoji, setShowEmoji] = useState(false);
+
+    console.log(chosenEmoji);
 
     const onEmojiClick = (e, emojiObject) => {
         setChosenEmoji(emojiObject);
-        console.log(chosenEmoji);
         setShowEmoji(false);
     }
 
@@ -26,7 +27,7 @@ const TodoListName = ( {listId, icon, listName, setTodoLists, isEditName, setIsE
             {
                 ...todoList,
                 name: editName,
-                icon: chosenEmoji
+                icon: chosenEmoji.emoji
             }: todoList
         )));
         setIsEditName(false);
@@ -85,9 +86,9 @@ const TodoListName = ( {listId, icon, listName, setTodoLists, isEditName, setIsE
                     >
                         <div className="list-title">
                             <span className="list-emoji">
-                                {icon.emoji}
+                                {chosenEmoji.emoji}
                             </span>
-                            {listName}
+                            {editName}
                         </div>            
                     </div>
                 )

@@ -25,7 +25,7 @@ const ListModal = ( { addTodoList, handleChangeName, listName, setIsModal, chose
             {/* field to choose and show chosen emoji */}
             <div className="modal-emoji-picker">                
                 <div
-                className="button"
+                className="button modal-button"
                 onClick={() => setShowEmoji(prev => !prev)}
                 >
                     <span>
@@ -58,7 +58,7 @@ const ListModal = ( { addTodoList, handleChangeName, listName, setIsModal, chose
                 autoFocus
             />
             
-            <button className="button">
+            <button className="button modal-submit-button">
                 Create!
             </button>
 
