@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+
+import { TodoListsContext } from '../../provider/TodoListsProvider';
 
 
 import TodoForm from "./TodoForm";
@@ -6,7 +8,9 @@ import TodoListSetting from './TodoListSetting';
 import Todo from './Todo';
 import TodoListName from './TodoListName';
 
-const TodoList = ( { displayedTodoList, setDisplayedTodoList, todoLists, setTodoLists, idGenerator } ) => {
+const TodoList = ( { displayedTodoList, setDisplayedTodoList, idGenerator } ) => {
+
+    const { todoLists, setTodoLists } = useContext(TodoListsContext);
 
     const { id: listId, name: listName, icon } = displayedTodoList;
 
@@ -23,9 +27,9 @@ const TodoList = ( { displayedTodoList, setDisplayedTodoList, todoLists, setTodo
     console.log('filteredTodos', filteredTodos);
     console.log('todos', todos);
 
-    useEffect(() => {
-        getTodos();
-    }, [])
+    // useEffect(() => {
+    //     getTodos();
+    // }, [])
 
     useEffect(() => {
         handleFilter();
@@ -40,18 +44,18 @@ const TodoList = ( { displayedTodoList, setDisplayedTodoList, todoLists, setTodo
     }
 
     // !
-    const getTodos = () => {
-        if(todoLists){
-            const found = todoLists.find(todoList => todoList.id === listId);
-            if(found){
-                setTodos(found.todos);
-            } else {
-                setTodos([]);
-            }
-        } else {
-            setTodos([]);
-        }
-    };
+    // const getTodos = () => {
+    //     if(todoLists){
+    //         const found = todoLists.find(todoList => todoList.id === listId);
+    //         if(found){
+    //             setTodos(found.todos);
+    //         } else {
+    //             setTodos([]);
+    //         }
+    //     } else {
+    //         setTodos([]);
+    //     }
+    // };
 
     const updateTodoList = (listId) => {
         setTodoLists((prevTodoLists => prevTodoLists.map(todoList => (
@@ -112,9 +116,9 @@ const TodoList = ( { displayedTodoList, setDisplayedTodoList, todoLists, setTodo
             { 
                 isEmpty(displayedTodoList) ? 
                 (
-                    <h3 className="todolist">
-                        Hi there 👋,<br /> choose your List to show!
-                    </h3>
+                    <h2 className="todolist todo-list-message">
+                        Hi there 👋,<br /> choose your todo list!
+                    </h2>
                 )
                 : 
                 (
@@ -126,7 +130,6 @@ const TodoList = ( { displayedTodoList, setDisplayedTodoList, todoLists, setTodo
                             <TodoListSetting 
                                 listId={listId}
                                 setDisplayedTodoList={setDisplayedTodoList}
-                                setTodoLists={setTodoLists}
                                 showCompletedTodos={showCompletedTodos}
                                 setShowCompletedTodos={setShowCompletedTodos}
                             />
@@ -136,7 +139,6 @@ const TodoList = ( { displayedTodoList, setDisplayedTodoList, todoLists, setTodo
                             listId={listId}
                             icon={icon}
                             listName={listName}
-                            setTodoLists={setTodoLists}
                             isEditName={isEditName}
                             setIsEditName={setIsEditName}
                         />

@@ -1,22 +1,24 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+
+import { TodoListsContext } from '../provider/TodoListsProvider';
+
 import Header from './Header';
-import ListModal from './modal/ListModal';
+import Modal from './modal/Modal';
 import SideBar from './navigation/SideBar';
 import TodoList from './todolist/TodoList';
 
 
 
+
 const Home = () => {
-    const [todoLists, setTodoLists] = useState([]);
+    const { todoLists } = useContext(TodoListsContext);
+
     const [displayedTodoList, setDisplayedTodoList] = useState({});
 
-    const [showNav, setShowNav] = useState(false);
+    const [showSideBar, setShowSideBar] = useState(false);
 
-    // States for Modal
     const [isModal, setIsModal] = useState(false);
-    const [listName, setListName] = useState('');
-    const [chosenEmoji, setChosenEmoji] = useState(null);
-
+    
     //! log
     console.log('todoLists', todoLists)
     console.log('displayedTodoList', displayedTodoList)
@@ -48,50 +50,26 @@ const Home = () => {
         return (performance.now().toString(36) + Math.random().toString(36)).replace(/\./g, '');
     }
     
-    const handleChangeName = (e) => {
-        setListName(e.target.value);
-    }
-
-    const addTodoList = (e) => {
-        e.preventDefault();
-        
-        const newTodoList = {
-            id: idGenerator(),
-            name: listName,
-            icon: chosenEmoji || '',
-        }
-
-        setTodoLists((prevTodoLists) => ([
-            ...prevTodoLists,
-            newTodoList
-        ]));
-
-        setIsModal(false);
-        setDisplayedTodoList(newTodoList);
-        setListName('');
-        setChosenEmoji(null);
-    }
 
     return (
         <div className="home">          
-            <Header displayedTodoList={displayedTodoList}/>
+            <Header/>
 
             {/* side bar navigation to show chosen todo list in TodoList */}
             <SideBar
                 setIsModal={setIsModal}
-                todoLists={todoLists}
-                setShowNav={setShowNav}
-                showNav={showNav}
+                setShowSideBar={setShowSideBar}
+                showSideBar={showSideBar}
                 setDisplayedTodoList={setDisplayedTodoList}
             /> 
 
+
+            {/* show chosen todo list or message if modal is not on */}
             {
                 !isModal && 
                 <TodoList 
                 displayedTodoList={displayedTodoList}
                 setDisplayedTodoList={setDisplayedTodoList}
-                todoLists={todoLists}
-                setTodoLists={setTodoLists}
                 idGenerator={idGenerator}
                 />
             }            
@@ -99,14 +77,11 @@ const Home = () => {
             {/* show Modal to input list name and icon when is Modal is on */}
             {
                 isModal && 
-                <ListModal 
-                addTodoList={addTodoList}
-                handleChangeName={handleChangeName}
-                listName={listName}
+                <Modal
+                idGenerator={idGenerator}
+                setDisplayedTodoList={setDisplayedTodoList}
                 setIsModal={setIsModal}
-                chosenEmoji={chosenEmoji}
-                setChosenEmoji={setChosenEmoji}
-            />
+                />
             }             
         </div>
     );

@@ -1,66 +1,70 @@
+import  { useContext } from 'react';
+
 import { AiFillCloseSquare } from 'react-icons/ai';
 import { FcMenu } from 'react-icons/fc'
 
-const SideBar = ( { setIsModal, todoLists, setShowNav, showNav, setDisplayedTodoList } ) => {
+import { TodoListsContext } from '../../provider/TodoListsProvider';
+
+const SideBar = ( { setIsModal, setShowSideBar, showSideBar, setDisplayedTodoList } ) => {
+
+    const { todoLists } = useContext(TodoListsContext);
 
 
-    const handleSelectedTodoList = (e) => {
-        const found = todoLists.find((todoList => (todoList.id === e.target.id)));
+    const handleSelectedTodoList = (id) => {
+        const found = todoLists.find((todoList => (todoList.id === id)));
         setDisplayedTodoList(found);
+        // setShowSideBar(false);
     }
 
     const handleClick = () => {
         setIsModal(true);
-        setShowNav(false);
+        setShowSideBar(false);
     }
 
     return (
         <nav>
-            {/* show navigation bar if show Nav is true, otherwise hamburger menu */}
-
-            {
-                showNav ? 
-                (
-                    <div className="nav-open">
-                        <AiFillCloseSquare 
-                        className="icon nav-close"
-                        onClick={() => setShowNav(false)} 
-                        />
-                        <ul className="nav-list">
-
-                            {/* Create new Todo List. Trigger ListModal when clicked */}
-                            <li
-                                onClick={handleClick}
-                                >
-                                Create New Todo List
-                            </li>
-
-                            {/* Todo Lists registered are shown as list when available. Trigger displayedTodoList when clicked */}
-                                {
-                                    todoLists ? 
-                                    (
-                                        todoLists.map((todoList) => (
-                                            <li 
-                                                key={todoList.id}
-                                                id={todoList.id}
-                                                onClick={(e) => handleSelectedTodoList(e)}
-                                            >
-                                                <span>
-                                                    {todoList.icon.emoji}
-                                                </span>
-                                                {todoList.name}
-                                            </li>
-                                    ))
-                                    ) : null
-                                }
-                        </ul>
-                    </div>
-                ):
-                <FcMenu 
-                className="icon hamburger"
-                onClick={() => setShowNav(true)}
+            {/* show navigation bar if show Nav is true, otherwise hamburger menu icon */}
+            <FcMenu 
+                className={showSideBar ? "hide": "icon hamburger"}
+                onClick={() => setShowSideBar(true)}
+            />
+           
+            <div                
+                className={showSideBar ?"sidebar-open" : "hide"}
+            >
+                <AiFillCloseSquare 
+                className="icon nav-close"
+                onClick={() => setShowSideBar(false)} 
                 />
-            }            
+                <ul className="nav-list">
+
+                    {/* Create new Todo List. Trigger ListModal when clicked */}
+                    <li
+                        onClick={handleClick}
+                        >
+                        Create New Todo List
+                    </li>
+
+                    {/* Todo Lists registered are shown as list when available. Trigger displayedTodoList when clicked */}
+                        {
+                            todoLists ? 
+                            (
+                                todoLists.map((todoList) => (
+                                    <li 
+                                        key={todoList.id}
+                                        id={todoList.id}
+                                        onClick={() => handleSelectedTodoList(todoList.id)}
+                                    >
+                                        <span>
+                                            {todoList.icon}
+                                        </span>
+                                        {todoList.name}
+                                    </li>
+                            ))
+                            ) : null
+                        }
+                </ul>
+            </div>
         </nav>
         
     );

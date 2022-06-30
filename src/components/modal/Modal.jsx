@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+
+import { TodoListsContext } from '../../provider/TodoListsProvider';
 
 import { IoIosCloseCircle } from 'react-icons/io';
 import Picker from 'emoji-picker-react';
 
-const ListModal = ( { addTodoList, handleChangeName, listName, setIsModal, chosenEmoji, setChosenEmoji } ) => {
+const ListModal = ( { idGenerator, setDisplayedTodoList, setIsModal } ) => {
+    const { setTodoLists } = useContext(TodoListsContext);
+    
+    const [listName, setListName] = useState('');
+    const [chosenEmoji, setChosenEmoji] = useState(null);
     const [showEmoji, setShowEmoji] = useState(false);
 
     const onEmojiClick = (e, emojiObject) => {
@@ -11,9 +17,34 @@ const ListModal = ( { addTodoList, handleChangeName, listName, setIsModal, chose
         setShowEmoji(false);
     }
 
+    const handleChangeName = (e) => {
+        setListName(e.target.value);
+    }
+
+    const createTodoList = (e) => {
+        e.preventDefault();
+        
+        const newTodoList = {
+            id: idGenerator(),
+            name: listName,
+            icon: chosenEmoji || '',
+            todos: []
+        }
+
+        setTodoLists((prevTodoLists) => ([
+            ...prevTodoLists,
+            newTodoList
+        ]));
+
+        setIsModal(false);
+        setDisplayedTodoList(newTodoList);
+        setListName('');
+        setChosenEmoji(null);
+    }
+
     return (
         <form 
-            onSubmit={(e) => addTodoList(e, chosenEmoji)} 
+            onSubmit={(e) => createTodoList(e, chosenEmoji)} 
             className="modal"
         >
             {/* close button */}

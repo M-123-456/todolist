@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { AiFillSetting } from 'react-icons/ai';
 import { IoIosCloseCircle } from 'react-icons/io';
 
+import { TodoListsContext } from '../../provider/TodoListsProvider';
 
-const TodoListSetting = ( { listId, setTodoLists, showCompletedTodos, setShowCompletedTodos, setDisplayedTodoList } ) => {
+
+const TodoListSetting = ( { listId, showCompletedTodos, setShowCompletedTodos, setDisplayedTodoList } ) => {
+    const { setTodoLists } = useContext(TodoListsContext);
+
     const [showSetting, setShowSetting] = useState(false);
     
 

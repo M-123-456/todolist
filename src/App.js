@@ -1,12 +1,18 @@
+
 import './App.css';
 import Home from './components/Home';
+import TodoListsProvider from './provider/TodoListsProvider';
 
 
 function App() {
 
   return (
     <div className="App">
-      <Home />
+        <TodoListsProvider>
+
+          <Home />
+
+        </TodoListsProvider>
     </div>
   );
 }
