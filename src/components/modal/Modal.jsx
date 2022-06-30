@@ -5,8 +5,8 @@ import { TodoListsContext } from '../../provider/TodoListsProvider';
 import { IoIosCloseCircle } from 'react-icons/io';
 import Picker from 'emoji-picker-react';
 
-const ListModal = ( { idGenerator, setDisplayedTodoList, setIsModal } ) => {
-    const { setTodoLists } = useContext(TodoListsContext);
+const ListModal = ( { idGenerator, setIsModal } ) => {
+    const { setTodoLists, setDisplayedTodoList } = useContext(TodoListsContext);
     
     const [listName, setListName] = useState('');
     const [chosenEmoji, setChosenEmoji] = useState(null);
@@ -27,7 +27,7 @@ const ListModal = ( { idGenerator, setDisplayedTodoList, setIsModal } ) => {
         const newTodoList = {
             id: idGenerator(),
             name: listName,
-            icon: chosenEmoji || '',
+            icon: chosenEmoji.emoji || '',
             todos: []
         }
 

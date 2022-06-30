@@ -1,19 +1,17 @@
-import  { useContext } from 'react';
+import  { useState, useContext } from 'react';
 
 import { AiFillCloseSquare } from 'react-icons/ai';
 import { FcMenu } from 'react-icons/fc'
 
 import { TodoListsContext } from '../../provider/TodoListsProvider';
 
-const SideBar = ( { setIsModal, setShowSideBar, showSideBar, setDisplayedTodoList } ) => {
+const SideBar = ( { setIsModal, setShowSideBar, showSideBar } ) => {
 
-    const { todoLists } = useContext(TodoListsContext);
-
+    const { todoLists, setDisplayedTodoList } = useContext(TodoListsContext);
 
     const handleSelectedTodoList = (id) => {
-        const found = todoLists.find((todoList => (todoList.id === id)));
+        const found = todoLists.find(todoList => todoList.id === id);
         setDisplayedTodoList(found);
-        // setShowSideBar(false);
     }
 
     const handleClick = () => {

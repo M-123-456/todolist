@@ -15,6 +15,7 @@
 
 .icon {
   font-size: 2rem;
+  color: #3E4E6B;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -24,7 +25,7 @@
 }
 
 .icon:hover {
-  opacity: 0.8;
+  color: white;
 }
 
 .close {
@@ -47,8 +48,7 @@
   font-weight: 600;
   border: none;
   border-radius: 999px;
-  background: -webkit-gradient(linear, left top, right top, color-stop(29%, #0965c0), to(#8597cc));
-  background: linear-gradient(90deg, #0965c0 29%, #8597cc 100%);
+  background: #AD4867;
   color: white;
 }
 
@@ -68,12 +68,15 @@ input:focus {
 
 ul {
   list-style: none;
-  background-color: white;
   padding: .5rem;
 }
 
 ul li {
   padding: .5rem;
+}
+
+nav {
+  background-color: #161A43;
 }
 
 nav .hamburger {
@@ -92,9 +95,7 @@ nav .sidebar-open {
   transition: opacity 250ms ease-in-out;
   opacity: 1;
   height: 100vh;
-  background-color: white;
-  -webkit-box-shadow: -10px 0px 10px 0px rgba(74, 71, 55, 0.2);
-          box-shadow: -10px 0px 10px 0px rgba(74, 71, 55, 0.2);
+  border: 1px solid #026CDB;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -121,8 +122,7 @@ nav .sidebar-open .nav-list li {
 }
 
 nav .sidebar-open .nav-list li:hover {
-  background: -webkit-gradient(linear, left top, right top, color-stop(29%, white), to(#e5f0ff));
-  background: linear-gradient(90deg, white 29%, #e5f0ff 100%);
+  border: #e90e11 1px solid;
 }
 
 .home {
@@ -148,12 +148,9 @@ nav .sidebar-open .nav-list li:hover {
           flex-direction: column;
   width: 40rem;
   padding: 3rem 4rem;
-  background-color: linear-gradient(90deg, white 29%, #e5f0ff 100%);
-  background: -webkit-gradient(linear, left top, right top, color-stop(29%, white), to(#e5f0ff));
-  background: linear-gradient(90deg, white 29%, #e5f0ff 100%);
+  background-color: #161A43;
+  border: solid 1px white;
   border-radius: .5rem;
-  -webkit-box-shadow: 6px 5px 8px 1000px rgba(74, 71, 55, 0.47);
-          box-shadow: 6px 5px 8px 1000px rgba(74, 71, 55, 0.47);
   position: relative;
   will-change: transform, opacity;
 }

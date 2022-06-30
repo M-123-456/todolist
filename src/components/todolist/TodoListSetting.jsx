@@ -5,14 +5,14 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import { TodoListsContext } from '../../provider/TodoListsProvider';
 
 
-const TodoListSetting = ( { listId, showCompletedTodos, setShowCompletedTodos, setDisplayedTodoList } ) => {
-    const { setTodoLists } = useContext(TodoListsContext);
+const TodoListSetting = ( { showCompletedTodos, setShowCompletedTodos } ) => {
+    const { setTodoLists, displayedTodoList, setDisplayedTodoList } = useContext(TodoListsContext);
 
     const [showSetting, setShowSetting] = useState(false);
     
 
-    const removeTodoList = (listId) => {
-        setTodoLists(prevTodoLists => prevTodoLists.filter((todoList) => todoList.id !== listId));
+    const removeTodoList = (id) => {
+        setTodoLists(prevTodoLists => prevTodoLists.filter((todoList) => todoList.id !== id));
         setShowSetting(false);
         setDisplayedTodoList({});
     }
@@ -36,7 +36,7 @@ const TodoListSetting = ( { listId, showCompletedTodos, setShowCompletedTodos, s
                     className="icon close"
                 />
                 <ul className="todolist-setting-menu">
-                    <li onClick={() => removeTodoList(listId)}>
+                    <li onClick={() => removeTodoList(displayedTodoList.id)}>
                         Delete list
                     </li>
                     <li onClick={handleShowCompletedTodos}>

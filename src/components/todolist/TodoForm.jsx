@@ -12,7 +12,6 @@ const TodoForm = ( { input, setInput, addTodo } ) => {
                 className="todo-input"
                 type="text" 
                 name="todo" 
-                // ref={inputRef}
                 value={input}
                 placeholder='New todo...'
                 onChange={handleChangeInput}

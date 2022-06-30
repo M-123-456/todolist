@@ -8,11 +8,9 @@ import TodoListSetting from './TodoListSetting';
 import Todo from './Todo';
 import TodoListName from './TodoListName';
 
-const TodoList = ( { displayedTodoList, setDisplayedTodoList, idGenerator } ) => {
+const TodoList = ( {  idGenerator } ) => {
 
-    const { todoLists, setTodoLists } = useContext(TodoListsContext);
-
-    const { id: listId, name: listName, icon } = displayedTodoList;
+    const { todoLists, setTodoLists, displayedTodoList, setDisplayedTodoList } = useContext(TodoListsContext);
 
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState('');
@@ -33,11 +31,12 @@ const TodoList = ( { displayedTodoList, setDisplayedTodoList, idGenerator } ) =>
 
     useEffect(() => {
         handleFilter();
-    }, [todos, showCompletedTodos, todoLists])
+    }, [showCompletedTodos, todoLists])
 
     useEffect(() => {
-        updateTodoList(listId);
-    },[todos])
+        updateTodoList(displayedTodoList.id);
+    },[todos]);
+
 
     const isEmpty = (obj) => {
         return JSON.stringify(obj) === JSON.stringify({});
@@ -57,9 +56,9 @@ const TodoList = ( { displayedTodoList, setDisplayedTodoList, idGenerator } ) =>
     //     }
     // };
 
-    const updateTodoList = (listId) => {
+    const updateTodoList = (id) => {
         setTodoLists((prevTodoLists => prevTodoLists.map(todoList => (
-            todoList.id === listId ?
+            todoList.id === id ?
             {
                 ...todoList,
                 todos: todos 
@@ -67,6 +66,7 @@ const TodoList = ( { displayedTodoList, setDisplayedTodoList, idGenerator } ) =>
             : todoList
         ))));
     };
+
 
 
     const addTodo = (e) => {
@@ -128,17 +128,12 @@ const TodoList = ( { displayedTodoList, setDisplayedTodoList, idGenerator } ) =>
                         {
                             !isEditName &&
                             <TodoListSetting 
-                                listId={listId}
-                                setDisplayedTodoList={setDisplayedTodoList}
                                 showCompletedTodos={showCompletedTodos}
                                 setShowCompletedTodos={setShowCompletedTodos}
                             />
                         }
                         
                         <TodoListName 
-                            listId={listId}
-                            icon={icon}
-                            listName={listName}
                             isEditName={isEditName}
                             setIsEditName={setIsEditName}
                         />
@@ -167,7 +162,6 @@ const TodoList = ( { displayedTodoList, setDisplayedTodoList, idGenerator } ) =>
                                     input={input}
                                     setInput={setInput}
                                     addTodo={addTodo}
-                                    listId={listId}
                                 />
                             </li>
                         </ul>                 

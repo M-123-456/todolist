@@ -11,17 +11,16 @@ import TodoList from './todolist/TodoList';
 
 
 const Home = () => {
-    const { todoLists } = useContext(TodoListsContext);
+    const { todoLists, displayedTodoList } = useContext(TodoListsContext);
 
-    const [displayedTodoList, setDisplayedTodoList] = useState({});
-
+    // const [displayedTodoList, setDisplayedTodoList] = useState({});
     const [showSideBar, setShowSideBar] = useState(false);
-
     const [isModal, setIsModal] = useState(false);
     
     //! log
     console.log('todoLists', todoLists)
     console.log('displayedTodoList', displayedTodoList)
+    // console.log('displayedTodoListId', displayedTodoListId)
 
     // LocalStorage
     // useEffect(() => {
@@ -60,7 +59,7 @@ const Home = () => {
                 setIsModal={setIsModal}
                 setShowSideBar={setShowSideBar}
                 showSideBar={showSideBar}
-                setDisplayedTodoList={setDisplayedTodoList}
+                // setDisplayedTodoList={setDisplayedTodoList}
             /> 
 
 
@@ -68,8 +67,6 @@ const Home = () => {
             {
                 !isModal && 
                 <TodoList 
-                displayedTodoList={displayedTodoList}
-                setDisplayedTodoList={setDisplayedTodoList}
                 idGenerator={idGenerator}
                 />
             }            
@@ -79,7 +76,6 @@ const Home = () => {
                 isModal && 
                 <Modal
                 idGenerator={idGenerator}
-                setDisplayedTodoList={setDisplayedTodoList}
                 setIsModal={setIsModal}
                 />
             }             

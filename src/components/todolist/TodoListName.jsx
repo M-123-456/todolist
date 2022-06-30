@@ -1,18 +1,15 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Picker from 'emoji-picker-react';
 import { MdSystemUpdateAlt } from 'react-icons/md';
 
 import { TodoListsContext } from '../../provider/TodoListsProvider';
 
-const TodoListName = ( {listId, icon, listName, isEditName, setIsEditName}) => {
+const TodoListName = ( { isEditName, setIsEditName }) => {
 
-    const { setTodoLists } = useContext(TodoListsContext);
-
-    const [editName, setEditName] = useState(listName || "");
-    const [chosenEmoji, setChosenEmoji] = useState(icon || "");
+    const { setTodoLists, displayedTodoList } = useContext(TodoListsContext);
+    const [editName, setEditName] = useState(displayedTodoList.name || "");
+    const [chosenEmoji, setChosenEmoji] = useState(displayedTodoList.icon.emoji || "");
     const [showEmoji, setShowEmoji] = useState(false);
-
-    console.log(chosenEmoji);
 
     const onEmojiClick = (e, emojiObject) => {
         setChosenEmoji(emojiObject);
@@ -45,7 +42,7 @@ const TodoListName = ( {listId, icon, listName, isEditName, setIsEditName}) => {
                 (
                     <form 
                         className="form-list-name"
-                        onSubmit={(e) => handleSubmit(e, listId)}
+                        onSubmit={(e) => handleSubmit(e, displayedTodoList.id)}
                     >
                         <div className="list-name-input">
                             <div 

@@ -1,11 +1,9 @@
 // variables
 // emoji color #FDBB33;
-$font-color: #3F3932;
-$gradient-background: linear-gradient(90deg, rgba(255,255,255,1) 29%, rgba(229,240,255,1) 100%);
-$button-gradient-background: linear-gradient(90deg, rgba(9,101,192,1) 29%, rgba(133,151,204,1) 100%);
-$hover-gradient: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(215,227,247,1) 27%, rgba(255,255,255,1) 85%);
-$box-shadow: 6px 5px 8px 5px rgba(74,71,55,0.27);
-$box-shadow-modal: 6px 5px 8px 1000px rgba(74,71,55,0.47);
+$bg-color: #161A43;
+$button-color: #AD4867;
+$hover-color: rgb(233, 14, 17, 0.5);
+
 
 
 .App {
@@ -19,8 +17,9 @@ $box-shadow-modal: 6px 5px 8px 1000px rgba(74,71,55,0.47);
 // components
 .icon {
   font-size: 2rem;
+  color: #3E4E6B;
   &:hover {
-    opacity: 0.8;
+    color: white;
   }
   display: flex;
   align-items: center;
@@ -46,7 +45,7 @@ $box-shadow-modal: 6px 5px 8px 1000px rgba(74,71,55,0.47);
   font-weight: 600;
   border: none;
   border-radius: 999px;
-  background: $button-gradient-background;
+  background: $button-color;
   color: white;
   &:hover {
     opacity: 0.8;
@@ -65,7 +64,7 @@ input {
 
 ul {
     list-style: none;
-    background-color: white;
+    // background-color: white;
     padding: .5rem;
 
     li {
@@ -75,6 +74,7 @@ ul {
 
 // Sidebar
 nav {
+  background-color: $bg-color;
 
   .hamburger {
     margin: .5rem;
@@ -92,8 +92,7 @@ nav {
     transition: opacity 250ms ease-in-out;
     opacity: 1;
     height: 100vh;
-    background-color: white;
-    box-shadow: -10px 0px 10px 0px rgba(74,71,55,0.2);
+    border: 1px solid #026CDB;
     display: flex;
     flex-direction: column;
 
@@ -104,7 +103,6 @@ nav {
     }
 
     .nav-list {
-      box-shadow: none;
       border-radius: 0;
       
       
@@ -113,7 +111,9 @@ nav {
         font-size: 1.6rem;
 
         &:hover {
-        background: $gradient-background;
+        border-top: rgb(233, 14, 17) 1px solid;
+        border-bottom: rgb(233, 14, 17) 1px solid;
+
         }
       }
            
@@ -135,10 +135,9 @@ nav {
   flex-direction: column;
   width: 40rem;
   padding: 3rem 4rem;
-  background-color: $gradient-background;
-  background: $gradient-background;
+  background-color: $bg-color;
+  border: solid 1px white;
   border-radius: .5rem;
-  box-shadow: $box-shadow-modal;
   position: relative;
   will-change: transform, opacity;
 
@@ -162,7 +161,7 @@ nav {
   .emoji {
     background-color: white;
     font-size: 1.2rem;
-    box-shadow: $box-shadow;
+    color: $bg-color;
   }
 
   input{
@@ -172,7 +171,6 @@ nav {
     padding: 1rem 2rem;
     font-size: 1.4rem;
     font-family: 'Poppins', sans-serif;
-    box-shadow: $box-shadow;
     &:focus {
       outline: none;
     }
@@ -193,6 +191,8 @@ nav {
 // TodoList
 
 .todolist {
+  background-color: white;
+  color: $bg-color;
   position: relative;
   margin-top: 2rem;
 
@@ -208,7 +208,6 @@ nav {
   .todolist-list {
     padding: .5rem 1rem 1.5rem .5rem;
     border-radius: .2rem;
-    box-shadow: $box-shadow;
     
     li {
         border-bottom: solid 1px #c2c2b6;
@@ -233,7 +232,6 @@ nav {
 
     li {
       &:hover {
-        background: $gradient-background;
         border-radius: .3rem;
         }        
       }
@@ -294,7 +292,8 @@ nav {
     input {
       min-width: 5rem;
       max-width: 15rem;
-      background: white;
+      background-color: $bg-color;
+      color: white;
       border: none;
       &:focus {
         outline: none;
@@ -312,6 +311,8 @@ nav {
   }
 
   .update-button {
+    background-color: $bg-color;
+    color: #F9F871;
     margin-left: 1rem;
     border: none;
   }
