@@ -1,57 +1,38 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
-import { TodoListsContext } from '../../../provider/TodoListsProvider';
+const TodoForm = ( { idGenerator, setTodos } ) => {
 
-
-const TodoForm = ( { idGenerator, filteredListId } ) => {
-
-    const { setTodoLists } = useContext(TodoListsContext);
-
-    const [todo, setTodo] = useState('');
+    const [newTodo, setNewTodo] = useState('');
 
     
     const handleChangeInput = (e) => {
-        setTodo(e.target.value);
+        setNewTodo(e.target.value);
     }
 
-    const addTodo = (e, filteredListId) => {
+    const addTodo = (e) => {
         e.preventDefault();
 
-        const newTodo = {
-            id: idGenerator(),
-            todo: todo,
-            isDone: false
-        };
-        
-        setTodoLists(TodoLists => {
-            return TodoLists.map(todoList => {
-                if(todoList.id === filteredListId){
-                    return {
-                        ...todoList,
-                        todos: [
-                            ...todoList.todos, 
-                            newTodo
-                        ]
-                    }
+        setTodos(prevTodos => ([
+            ...prevTodos,
+            {
+                id: idGenerator(),
+                todo: newTodo,
+                isDone: false
+            }
+        ]));
 
-                } else {
-                    return todoList;
-                }
-            })
-        })
-
-        setTodo('');
+        setNewTodo('');
     }    
 
     return (
         <form  
-            onSubmit={(e) => addTodo(e, filteredListId)}>
+            onSubmit={addTodo}>
             <div className="todo">
                 <input
                 className="todo-input"
                 type="text" 
                 name="todo" 
-                value={todo}
+                value={newTodo}
                 placeholder='New todo...'
                 onChange={handleChangeInput}
                 autoFocus

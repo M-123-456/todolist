@@ -1,44 +1,15 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState } from 'react';
 
 import { MdDone } from 'react-icons/md';
 import { MdDeleteForever } from 'react-icons/md';
 
-import { TodoListsContext } from '../../../provider/TodoListsProvider';
 
-const Todo = ( { id, todo, isDone, listId, filteredTodos } ) => {
+const Todo = ( { id, todo, isDone, listId, todos, setTodos } ) => {
 
-    const { todoLists, setTodoLists } = useContext(TodoListsContext);
-    const [todos, setTodos] = ([]);
-
-    console.log('filteredTodos', filteredTodos)
-    
     // state isEdit is triggered by clicking on the todo div to show edit form. To be set to false onBlur. 
     const [isEdit, setIsEdit] = useState(false);
     // the input todo is stored on editInput temporary till it is added to state todos
     const [editTodo, setEditTodo] = useState(todo || '');
-
-    console.log(todos);
-
-
-     useEffect(() => {
-        updateTodoLists();
-    }, [todos]);
-
-    const updateTodoLists = () => {
-        setTodoLists((prevTodoLists => {
-            return prevTodoLists.map(todoList => {
-                if(todoList.id === listId) {
-                    return {
-                        ...todoList,
-                        todos: todos
-                    }
-                } else {
-                    return todoList;
-                }
-            })
-        }));
-    }
-
 
     // trigger isEdit of clicked div
     const handleEdit = (id) => {
@@ -54,15 +25,13 @@ const Todo = ( { id, todo, isDone, listId, filteredTodos } ) => {
      const updateTodo = (e, id) => {
         e.preventDefault();
 
-        setTodos((prevTodos) => {
-            return prevTodos.map(todo => (
-                todo.id === id ?
-                {
-                    ...todo,
-                    todo: editTodo
-                } : todo
-            ))
-        });
+        setTodos(prevTodos => prevTodos.map(todo => (
+            todo.id === id ?
+            {
+                ...todo,
+                todo: editTodo
+            }: todo
+        )));
 
         setEditTodo('');
         setIsEdit(false);
@@ -85,9 +54,9 @@ const Todo = ( { id, todo, isDone, listId, filteredTodos } ) => {
 
     const removeTodo = (e, id) => {
         e.stopPropagation();
-        const removed = todos.filtered(todo => todo.id !== id);
-
-        setTodos(removed);
+        console.log('id', id);
+        setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
+        console.log(todos);
     };
   
     return (
@@ -130,7 +99,7 @@ const Todo = ( { id, todo, isDone, listId, filteredTodos } ) => {
                                 />
                                 <MdDeleteForever
                                     className="icon"
-                                    onClick={(e) => removeTodo(e, listId, id)}
+                                    onClick={(e) => removeTodo(e, id)}
                                 />                         
                             </div>
                     </li>

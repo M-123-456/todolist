@@ -1,8 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Todo from "./Todo";
 import TodoForm from "./TodoForm";
+import { TodoListsContext } from '../../../provider/TodoListsProvider';
 
 const TodoListNote = ( { filteredTodoList, idGenerator } ) => {
+
+    const { setTodoLists, displayedTodoList } = useContext(TodoListsContext);
+    const [todos, setTodos] = useState(displayedTodoList.todos || []);
+
+    useEffect(() => {
+        updateTodoLists();
+    }, [todos]);
+
+    useEffect(() => {
+        updateTodos();
+    }, [displayedTodoList]);
+
+    const updateTodos = () => {
+        setTodos(displayedTodoList.todos);
+    }
+
+    const updateTodoLists = () => {
+        setTodoLists((prevTodoLists => {
+            return prevTodoLists.map(todoList => {
+                if(todoList.id === filteredTodoList.id) {
+                    return {
+                        ...todoList,
+                        todos: todos
+                    }
+                } else {
+                    return todoList;
+                }
+            })
+        }));
+    }
 
 
     return (
@@ -17,7 +48,8 @@ const TodoListNote = ( { filteredTodoList, idGenerator } ) => {
                                         todo={todo.todo}
                                         isDone={todo.isDone}
                                         listId={filteredTodoList.id}
-                                        filteredTodos={filteredTodoList.todos}
+                                        todos={todos}
+                                        setTodos={setTodos}
                                     />
                                 )): null
                             }
@@ -28,6 +60,8 @@ const TodoListNote = ( { filteredTodoList, idGenerator } ) => {
                                 <TodoForm
                                     idGenerator={idGenerator}
                                     filteredListId={filteredTodoList.id}
+                                    todos={todos}
+                                    setTodos={setTodos}
                                 />
                             </li>
                         </ul>          

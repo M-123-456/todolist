@@ -12,6 +12,8 @@ const TodoList = ( {  idGenerator } ) => {
     const { todoLists, displayedTodoList, setDisplayedTodoList } = useContext(TodoListsContext);
     const [filteredTodoList, setFilteredTodoList] = useState({});
 
+    console.log('filtered', filteredTodoList)
+
 
     // state used in TodoListName when changing list name or icon
     const [isEditName, setIsEditName] = useState(false);
