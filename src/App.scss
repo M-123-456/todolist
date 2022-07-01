@@ -2,7 +2,8 @@
 // emoji color #FDBB33;
 $bg-color: #161A43;
 $accent-color: #E77D9A;
-$hover-color: rgb(233, 14, 17, 0.5);
+$accent-blue: #026CDB;
+$hover-color: rgb(233, 14, 17);
 
 .App {
   min-height: 100vh;
@@ -15,7 +16,7 @@ $hover-color: rgb(233, 14, 17, 0.5);
 // components
 .icon {
   font-size: 2rem;
-  color: #3E4E6B;
+  color: $accent-blue;
   &:hover {
     color: white;
   }
@@ -41,12 +42,13 @@ $hover-color: rgb(233, 14, 17, 0.5);
   padding: .2rem .8rem;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  border: none;
+  border: $accent-color 3px solid;
   border-radius: 999px;
   background-color: $accent-color;
   color: white;
   &:hover {
-    opacity: 0.8;
+    background-color:white;
+    color: $accent-color;
   }
 }
 
@@ -70,6 +72,10 @@ ul {
   }
 }
 
+header {
+  margin-bottom: 2rem;
+}
+
 // Sidebar
 nav {
   background-color: $bg-color;
@@ -90,7 +96,7 @@ nav {
     transition: opacity 250ms ease-in-out;
     opacity: 1;
     height: 100vh;
-    border: 1px solid #026CDB;
+    border: 1px solid $accent-blue;
     display: flex;
     flex-direction: column;
 
@@ -109,7 +115,7 @@ nav {
         font-size: 1.6rem;
 
         &:hover {
-        border: rgb(233, 14, 17) 1px solid;
+        border: $accent-color 3px solid;
         border-radius: 999px;
         }
       }
@@ -200,11 +206,13 @@ nav {
 
   .todolist-message {
     font-size: 4rem;
+    background-color: $bg-color;
+    color: #dddddd;
   }
 
   .todolist-list {
-    padding: .5rem 1rem 1.5rem .5rem;
-    border-radius: .2rem;
+    padding: 2rem;
+    border-radius: .5rem;
     
     li {
         border-bottom: solid 1px #c2c2b6;
@@ -217,20 +225,25 @@ nav {
   position: absolute;
   top: 0;
   right: .3rem; 
+  
+
 }
 
   .menubox {
     position: relative;
+    background-color: $bg-color;
+    color: white;
+    border: white 2px solid;
 
     ul {
       text-align: left;
       font-size: 1rem;
-      box-shadow: $box-shadow;
 
     li {
-      &:hover {
-        border-radius: .3rem;
-        }        
+       &:hover {
+        border: $accent-color 3px solid;
+        border-radius: 999px;
+        }       
       }
     }
   }
@@ -264,6 +277,11 @@ nav {
   display: flex;
   flex-direction: row;
   font-size: 1rem;
+  .icon {
+    &:hover {
+      color: $accent-color;
+    }
+  }
 }
 
 .complete {
@@ -278,6 +296,9 @@ nav {
   display: flex;
   flex-direction: column;
   position: relative;
+  background-color: white;
+  box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
+
   .list-name-input {
     margin-bottom: 1rem;
     padding: .5rem 1rem;
@@ -285,12 +306,11 @@ nav {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    box-shadow: $box-shadow-modal;
     input {
       min-width: 5rem;
       max-width: 15rem;
-      background-color: $bg-color;
-      color: white;
+      background-color: white;
+      color: $bg-color;
       border: none;
       &:focus {
         outline: none;
@@ -308,14 +328,30 @@ nav {
   }
 
   .update-button {
-    background-color: $bg-color;
+    background-color: white;
     color: $accent-color;
     margin-left: 1rem;
     border: none;
+
+    .icon {
+      &:hover {
+        color: $bg-color;
+      }
+    }
   }
+}
+
+.list-name {
+  background-color: $bg-color;
+  color: white;
+  padding-bottom: 1rem; 
 }
 
 .list-title {
   font-size: 1.6rem;
   font-weight: 600;
+
+  &:hover {
+    color: $accent-color;
+  }
 }

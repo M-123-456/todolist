@@ -16,6 +16,11 @@ const TodoListName = ( { isEditName, setIsEditName }) => {
         setEditIcon(chosenEmoji.emoji)
     }, [chosenEmoji])
 
+    useEffect(() => {
+        setEditIcon(displayedTodoList.icon );
+        setEditName(displayedTodoList.name);
+    }, [displayedTodoList])
+
 
     const onEmojiClick = (e, emojiObject) => {
         setChosenEmoji(emojiObject);
@@ -91,8 +96,9 @@ const TodoListName = ( { isEditName, setIsEditName }) => {
 
                 ):
                 (
-                    <div 
-                    onClick={() => setIsEditName(prev => !prev)}
+                    <div
+                        className="list-name" 
+                        onClick={() => setIsEditName(prev => !prev)}
                     >
                         <div className="list-title">
                             <span className="list-emoji">

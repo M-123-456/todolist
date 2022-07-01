@@ -15,7 +15,7 @@
 
 .icon {
   font-size: 2rem;
-  color: #3E4E6B;
+  color: #026CDB;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -46,14 +46,15 @@
   padding: .2rem .8rem;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  border: none;
+  border: #E77D9A 3px solid;
   border-radius: 999px;
-  background: #AD4867;
+  background-color: #E77D9A;
   color: white;
 }
 
 .button:hover {
-  opacity: 0.8;
+  background-color: white;
+  color: #E77D9A;
 }
 
 input {
@@ -73,6 +74,10 @@ ul {
 
 ul li {
   padding: .5rem;
+}
+
+header {
+  margin-bottom: 2rem;
 }
 
 nav {
@@ -112,8 +117,6 @@ nav .sidebar-open .nav-close {
 }
 
 nav .sidebar-open .nav-list {
-  -webkit-box-shadow: none;
-          box-shadow: none;
   border-radius: 0;
 }
 
@@ -122,7 +125,8 @@ nav .sidebar-open .nav-list li {
 }
 
 nav .sidebar-open .nav-list li:hover {
-  border: #e90e11 1px solid;
+  border: #E77D9A 3px solid;
+  border-radius: 999px;
 }
 
 .home {
@@ -185,8 +189,7 @@ nav .sidebar-open .nav-list li:hover {
 .modal .emoji {
   background-color: white;
   font-size: 1.2rem;
-  -webkit-box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
-          box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
+  color: #161A43;
 }
 
 .modal input {
@@ -196,8 +199,6 @@ nav .sidebar-open .nav-list li:hover {
   padding: 1rem 2rem;
   font-size: 1.4rem;
   font-family: 'Poppins', sans-serif;
-  -webkit-box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
-          box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
 }
 
 .modal input:focus {
@@ -215,6 +216,8 @@ nav .sidebar-open .nav-list li:hover {
 }
 
 .todolist {
+  background-color: white;
+  color: #161A43;
   position: relative;
   margin-top: 2rem;
 }
@@ -226,13 +229,13 @@ nav .sidebar-open .nav-list li:hover {
 
 .todolist .todolist-message {
   font-size: 4rem;
+  background-color: #161A43;
+  color: #dddddd;
 }
 
 .todolist .todolist-list {
-  padding: .5rem 1rem 1.5rem .5rem;
-  border-radius: .2rem;
-  -webkit-box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
-          box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
+  padding: 2rem;
+  border-radius: .5rem;
 }
 
 .todolist .todolist-list li {
@@ -247,19 +250,19 @@ nav .sidebar-open .nav-list li:hover {
 
 .menubox {
   position: relative;
+  background-color: #161A43;
+  color: white;
+  border: white 2px solid;
 }
 
 .menubox ul {
   text-align: left;
   font-size: 1rem;
-  -webkit-box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
-          box-shadow: 6px 5px 8px 5px rgba(74, 71, 55, 0.27);
 }
 
 .menubox ul li:hover {
-  background: -webkit-gradient(linear, left top, right top, color-stop(29%, white), to(#e5f0ff));
-  background: linear-gradient(90deg, white 29%, #e5f0ff 100%);
-  border-radius: .3rem;
+  border: #E77D9A 3px solid;
+  border-radius: 999px;
 }
 
 .todo-input {
@@ -296,6 +299,10 @@ nav .sidebar-open .nav-list li:hover {
   font-size: 1rem;
 }
 
+.todo-icons .icon:hover {
+  color: #E77D9A;
+}
+
 .complete {
   text-decoration: line-through;
 }
@@ -309,6 +316,9 @@ nav .sidebar-open .nav-list li:hover {
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative;
+  background-color: white;
+  -webkit-box-shadow: 0 0 0 50vmax rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 0 50vmax rgba(0, 0, 0, 0.5);
 }
 
 .form-list-name .list-name-input {
@@ -324,14 +334,13 @@ nav .sidebar-open .nav-list li:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-shadow: 6px 5px 8px 1000px rgba(74, 71, 55, 0.47);
-          box-shadow: 6px 5px 8px 1000px rgba(74, 71, 55, 0.47);
 }
 
 .form-list-name .list-name-input input {
   min-width: 5rem;
   max-width: 15rem;
-  background: white;
+  background-color: white;
+  color: #161A43;
   border: none;
 }
 
@@ -346,12 +355,28 @@ nav .sidebar-open .nav-list li:hover {
 }
 
 .form-list-name .update-button {
+  background-color: white;
+  color: #E77D9A;
   margin-left: 1rem;
   border: none;
+}
+
+.form-list-name .update-button .icon:hover {
+  color: #161A43;
+}
+
+.list-name {
+  background-color: #161A43;
+  color: white;
+  padding-bottom: 1rem;
 }
 
 .list-title {
   font-size: 1.6rem;
   font-weight: 600;
+}
+
+.list-title:hover {
+  color: #E77D9A;
 }
 /*# sourceMappingURL=App.css.map */

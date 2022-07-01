@@ -1,4 +1,4 @@
-import  { useState, useContext } from 'react';
+import  { useContext } from 'react';
 
 import { AiFillCloseSquare } from 'react-icons/ai';
 import { FcMenu } from 'react-icons/fc'
@@ -23,7 +23,7 @@ const SideBar = ( { setIsModal, setShowSideBar, showSideBar } ) => {
         <nav>
             {/* show navigation bar if show Nav is true, otherwise hamburger menu icon */}
             <FcMenu 
-                className={showSideBar ? "hide": "icon hamburger"}
+                className={showSideBar ? "hide": "hamburger icon"}
                 onClick={() => setShowSideBar(true)}
             />
            

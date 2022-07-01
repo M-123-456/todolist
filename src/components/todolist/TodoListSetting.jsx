@@ -10,6 +10,11 @@ const TodoListSetting = ( { showCompletedTodos, setShowCompletedTodos } ) => {
 
     const [showSetting, setShowSetting] = useState(false);
     
+    const handleClick = (e) => {
+        e.stopPropagation();
+        setShowSetting(true);
+
+    }
 
     const removeTodoList = (id) => {
         setTodoLists(prevTodoLists => prevTodoLists.filter((todoList) => todoList.id !== id));
@@ -26,7 +31,7 @@ const TodoListSetting = ( { showCompletedTodos, setShowCompletedTodos } ) => {
     return (
         <div className="todolist-setting">
             <AiFillSetting 
-                onClick={() => setShowSetting(true)}
+                onClick={handleClick}
                 className={showSetting ? "hide" : "icon"}
             />
             

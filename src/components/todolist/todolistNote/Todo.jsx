@@ -1,38 +1,94 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import { MdDone } from 'react-icons/md';
 import { MdDeleteForever } from 'react-icons/md';
 
-const Todo = ( {id, todo, isDone, completeTodo, removeTodo, todos, setTodos } ) => {
+import { TodoListsContext } from '../../../provider/TodoListsProvider';
 
+const Todo = ( { id, todo, isDone, listId, filteredTodos } ) => {
+
+    const { todoLists, setTodoLists } = useContext(TodoListsContext);
+    const [todos, setTodos] = ([]);
+
+    console.log('filteredTodos', filteredTodos)
+    
     // state isEdit is triggered by clicking on the todo div to show edit form. To be set to false onBlur. 
     const [isEdit, setIsEdit] = useState(false);
     // the input todo is stored on editInput temporary till it is added to state todos
-    const [editInput, setEditInput] = useState('');
+    const [editTodo, setEditTodo] = useState(todo || '');
+
+    console.log(todos);
+
+
+     useEffect(() => {
+        updateTodoLists();
+    }, [todos]);
+
+    const updateTodoLists = () => {
+        setTodoLists((prevTodoLists => {
+            return prevTodoLists.map(todoList => {
+                if(todoList.id === listId) {
+                    return {
+                        ...todoList,
+                        todos: todos
+                    }
+                } else {
+                    return todoList;
+                }
+            })
+        }));
+    }
+
 
     // trigger isEdit of clicked div
     const handleEdit = (id) => {
         setIsEdit(prev => !prev);
         const matched = todos.find(todo => todo.id === id);
-        setEditInput(matched.todo);
-    }
-
-    const updateTodo = (e, id) => {
-        e.preventDefault();
-        setTodos((prevTodos => prevTodos.map((prevTodo) => (
-            prevTodo.id === id ?
-            {
-                ...prevTodo,
-                todo: editInput
-            }: prevTodo
-        ))));
-        setEditInput('');
-        setIsEdit(false);
+        setEditTodo(matched.todo);
     }
 
     const handleChange = (e) => {
-        setEditInput(e.target.value);
+        setEditTodo(e.target.value);
     }
+
+     const updateTodo = (e, id) => {
+        e.preventDefault();
+
+        setTodos((prevTodos) => {
+            return prevTodos.map(todo => (
+                todo.id === id ?
+                {
+                    ...todo,
+                    todo: editTodo
+                } : todo
+            ))
+        });
+
+        setEditTodo('');
+        setIsEdit(false);
+    }
+
+
+
+    const completeTodo = (e, id) => {
+        e.stopPropagation();
+        console.log('clicked');
+        console.log(todos);
+
+        setTodos(prevTodos => prevTodos.map(todo => (
+            todo.id === id ?
+                { ...todo, isDone: !todo.isDone }
+                : todo
+        )));
+    };
+
+
+    const removeTodo = (e, id) => {
+        e.stopPropagation();
+        const removed = todos.filtered(todo => todo.id !== id);
+
+        setTodos(removed);
+    };
   
     return (
         <div>
@@ -48,7 +104,7 @@ const Todo = ( {id, todo, isDone, completeTodo, removeTodo, todos, setTodos } ) 
                                 className="todo-input"
                                 type="text" 
                                 name="todo" 
-                                value={editInput}
+                                value={editTodo}
                                 onChange={handleChange}
                                 onBlur={() => setIsEdit(false)}     
                                 autoFocus
@@ -74,7 +130,7 @@ const Todo = ( {id, todo, isDone, completeTodo, removeTodo, todos, setTodos } ) 
                                 />
                                 <MdDeleteForever
                                     className="icon"
-                                    onClick={() => removeTodo(id)}
+                                    onClick={(e) => removeTodo(e, listId, id)}
                                 />                         
                             </div>
                     </li>

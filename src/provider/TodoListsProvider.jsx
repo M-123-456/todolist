@@ -5,12 +5,12 @@ export const TodoListsContext = createContext();
 const TodoListsProvider = ( { children }) => {
     const [todoLists, setTodoLists] = useState([]);
     const [displayedTodoList, setDisplayedTodoList] = useState({});
-    const [isChangedDisplayedTodoList, setIsChangedDisplayedTodoList] = useState(false);
+
 
     return ( 
     <TodoListsContext.Provider 
     value={{ 
-        todoLists, setTodoLists, displayedTodoList, setDisplayedTodoList,isChangedDisplayedTodoList, setIsChangedDisplayedTodoList
+        todoLists, setTodoLists, displayedTodoList, setDisplayedTodoList
         }}>
         {children}
     </TodoListsContext.Provider>    
