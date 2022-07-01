@@ -9,12 +9,16 @@ const TodoListName = ( { isEditName, setIsEditName }) => {
     const { setTodoLists, displayedTodoList } = useContext(TodoListsContext);
     const [editName, setEditName] = useState(displayedTodoList.name || "");
     const [editIcon, setEditIcon] = useState(displayedTodoList.icon || "");
-    const [chosenEmoji, setChosenEmoji] = useState(displayedTodoList.icon || "");
+    const [chosenEmoji, setChosenEmoji] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
+
+    useEffect(() => {
+        setEditIcon(chosenEmoji.emoji)
+    }, [chosenEmoji])
+
 
     const onEmojiClick = (e, emojiObject) => {
         setChosenEmoji(emojiObject);
-        setEditIcon(chosenEmoji.emoji);
         setShowEmoji(false);
     }
 
@@ -50,7 +54,7 @@ const TodoListName = ( { isEditName, setIsEditName }) => {
                             <div 
                                 className="list-title"
                             >
-                                {chosenEmoji ? chosenEmoji : ''}
+                                {editIcon ? editIcon : ''}
                             </div>
                             <input 
                                 className="list-title"

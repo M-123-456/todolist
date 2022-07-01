@@ -9,7 +9,7 @@ const ListModal = ( { idGenerator, setIsModal } ) => {
     const { setTodoLists, setDisplayedTodoList } = useContext(TodoListsContext);
     
     const [listName, setListName] = useState('');
-    const [chosenEmoji, setChosenEmoji] = useState(null);
+    const [chosenEmoji, setChosenEmoji] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
 
     const onEmojiClick = (e, emojiObject) => {

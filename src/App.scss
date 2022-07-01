@@ -1,10 +1,8 @@
 // variables
 // emoji color #FDBB33;
 $bg-color: #161A43;
-$button-color: #AD4867;
+$accent-color: #E77D9A;
 $hover-color: rgb(233, 14, 17, 0.5);
-
-
 
 .App {
   min-height: 100vh;
@@ -45,7 +43,7 @@ $hover-color: rgb(233, 14, 17, 0.5);
   font-weight: 600;
   border: none;
   border-radius: 999px;
-  background: $button-color;
+  background-color: $accent-color;
   color: white;
   &:hover {
     opacity: 0.8;
@@ -111,9 +109,8 @@ nav {
         font-size: 1.6rem;
 
         &:hover {
-        border-top: rgb(233, 14, 17) 1px solid;
-        border-bottom: rgb(233, 14, 17) 1px solid;
-
+        border: rgb(233, 14, 17) 1px solid;
+        border-radius: 999px;
         }
       }
            
@@ -312,7 +309,7 @@ nav {
 
   .update-button {
     background-color: $bg-color;
-    color: #F9F871;
+    color: $accent-color;
     margin-left: 1rem;
     border: none;
   }
