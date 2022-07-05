@@ -1,18 +1,18 @@
-
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import Home from './components/Home';
 import TodoListsProvider from './provider/TodoListsProvider';
+import Router from './route/Router';
 
 
 function App() {
 
   return (
     <div className="App">
+      <BrowserRouter>
         <TodoListsProvider>
-
-          <Home />
-
+          <Router />
         </TodoListsProvider>
+      </BrowserRouter>
     </div>
   );
 }

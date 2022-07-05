@@ -12,6 +12,8 @@ const TodoListName = ( { isEditName, setIsEditName }) => {
     const [chosenEmoji, setChosenEmoji] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
 
+    console.log(editIcon);
+
     useEffect(() => {
         setEditIcon(chosenEmoji.emoji)
     }, [chosenEmoji])
@@ -31,6 +33,10 @@ const TodoListName = ( { isEditName, setIsEditName }) => {
         setEditName(e.target.value);
     }
 
+    const handleChangeIcon = (e) => {
+        setEditIcon(e.target.value.emoji);
+    }
+
     const handleSubmit = (e, id) => {
         e.preventDefault();
 
@@ -39,7 +45,7 @@ const TodoListName = ( { isEditName, setIsEditName }) => {
             {
                 ...todoList,
                 name: editName,
-                icon: chosenEmoji.emoji
+                icon: editIcon,
             }: todoList
         )));
         setIsEditName(false);
@@ -58,12 +64,16 @@ const TodoListName = ( { isEditName, setIsEditName }) => {
                         <div className="list-name-input">
                             <div 
                                 className="list-title"
+                                value={editIcon}
+                                name="icon"
+                                onChange={handleChangeIcon}
                             >
                                 {editIcon ? editIcon : ''}
                             </div>
                             <input 
                                 className="list-title"
                                 value={editName}
+                                name="input"
                                 onChange={handleChange}
                                 autoFocus 
                                 />   

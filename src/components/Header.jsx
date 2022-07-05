@@ -2,7 +2,7 @@ const Header = () => {
     return (
         <header>
             <h1>
-                My Todo Lists
+                Your Todo List
             </h1>
         </header> 
        

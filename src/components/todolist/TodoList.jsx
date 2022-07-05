@@ -20,11 +20,6 @@ const TodoList = ( {  idGenerator } ) => {
 
     const [showCompletedTodos, setShowCompletedTodos] = useState(true);
 
-
-    // useEffect(() => {
-    //     getTodos();
-    // }, [])
-
     useEffect(() => {
         handleFilter();
     }, [showCompletedTodos, todoLists, displayedTodoList])
@@ -51,22 +46,6 @@ const TodoList = ( {  idGenerator } ) => {
     //     }
     // };
 
-    // const updateTodos = (id) => {
-    //     const matched = todoLists.find(todoList => todoList.id === id);
-    //     setTodos(matched.todos);
-    // }    
-
-    // const updateTodoList = (id) => {
-    //     setTodoLists((prevTodoLists => prevTodoLists.map(todoList => (
-    //         todoList.id === id ?
-    //         {
-    //             ...todoList,
-    //             todos: todos 
-    //         }
-    //         : todoList
-    //     ))));
-    // };
-
     const updateDisplayedTodoList = (id) => {
         if(!isEmpty(displayedTodoList)){
             const updated = todoLists.find(todoList => todoList.id === id);
@@ -74,43 +53,21 @@ const TodoList = ( {  idGenerator } ) => {
         }
     }
 
-    // const addTodo = (e, id) => {
-    //     e.preventDefault();
-
-    //     setTodoLists((prevTodoLists => prevTodoLists.map(todoList => (
-    //         todoList.id === id ?
-    //         {
-    //             ...todoList,
-    //             id: idGenerator(),
-    //             todos: input,
-    //             isDone: false
-    //         }: todoList
-    //     ))));
-    //     setInput('');
-    // }    
-
-    // const completeTodo = (e, id) => {
-    //     e.stopPropagation();
-    //     setTodos(prevTodos => prevTodos.map(todo => (
-    //     todo.id === id ?
-    //         { ...todo, isDone: !todo.isDone }
-    //         : todo
-    //     )));
-    // };
-
-    // const removeTodo = (id) => {
-    //     setTodos(prevTodos => prevTodos.filter((todo) => todo.id !== id));
-    // }
-
+    
     const handleFilter = () => {
 
         if(displayedTodoList){
              if(showCompletedTodos){
                 setFilteredTodoList(displayedTodoList);
             } else {
-                const filtered = displayedTodoList.todos.filter((todo => todo.isDone === false));
-                setFilteredTodoList(filtered);           
+                const filteredTodos = displayedTodoList.todos?.filter((todo => todo.isDone === false));
+                setFilteredTodoList(prevTodoList => ({
+                    ...prevTodoList,
+                    todos: filteredTodos
+                }));           
             }
+        } else {
+            return null;
         }
     };
 

@@ -9,11 +9,12 @@ const TodoListSetting = ( { showCompletedTodos, setShowCompletedTodos } ) => {
     const { setTodoLists, displayedTodoList, setDisplayedTodoList } = useContext(TodoListsContext);
 
     const [showSetting, setShowSetting] = useState(false);
+
+    console.log(showCompletedTodos);
     
     const handleClick = (e) => {
         e.stopPropagation();
         setShowSetting(true);
-
     }
 
     const removeTodoList = (id) => {
