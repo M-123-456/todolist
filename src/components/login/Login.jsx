@@ -6,7 +6,8 @@ const Login = () => {
     const navigate = useNavigate();
     const [userLoginInput, setUserLoginInput] = useState({});
     const [errorMessages, setErrorMessages] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    console.log(errorMessages);
 
     const users = [
         {
@@ -24,9 +25,9 @@ const Login = () => {
         password: 'invalid password'
     }
 
-    const renderErrorMessage = (name) => {
-        name === errorMessages.name && (
-            <div>{errorMessages.message}</div>
+    const renderErrorMessage = (err) => {
+        err === errorMessages.name && (
+            <div>${errorMessages.message}</div>
         )
     }
 
@@ -35,7 +36,6 @@ const Login = () => {
             ...prevInput,
             [e.target.name]: e.target.value
         }));
-        console.log(userLoginInput);
     }
 
     const handleLogin = (e) => {
@@ -46,11 +46,13 @@ const Login = () => {
            if(found.password === userLoginInput.password) {
             navigate("/home");
            } else {
-            setErrorMessages({ name: 'password', message: errors.password}) 
+            setErrorMessages({ name: 'password', message: errors.password});
+            alert(errorMessages.message);
            } 
 
         } else {
-            setErrorMessages( { name: "userName", message: errors.userName })
+            setErrorMessages( { name: "userName", message: errors.userName });
+            alert(errorMessages.message);
         }
     }
 
@@ -65,7 +67,6 @@ const Login = () => {
                     autoFocus 
                     onChange={handleChange}
                 />
-                {renderErrorMessage("userName")}
                 <label htmlFor="password">Password</label>
                 <input 
                     type="password" 
@@ -73,7 +74,6 @@ const Login = () => {
                     name="password"
                     onChange={handleChange} 
                 />
-                {renderErrorMessage("userName")}
                 <button className="button">LOG IN</button>
             </form>
         </div>

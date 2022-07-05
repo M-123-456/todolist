@@ -109,6 +109,7 @@ ul li {
 }
 
 .login input:focus {
+  outline-style: inset;
   outline: #E77D9A 4px solid;
 }
 
